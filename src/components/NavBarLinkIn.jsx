@@ -15,7 +15,7 @@ import imagePlaceHolder from "../assets/logo.png";
 const NavBarLinkIn = () => {
   return (
     <Navbar expand="lg" className="bg-light py-1 border-bottom">
-      <Container className=" d-flex justify-content-center">
+      <Container className="d-flex justify-content-center navBarContainer">
         <Row className="m-0 w-90">
           <Col md={4} className="d-flex align-items-center">
             <Navbar.Brand href="#">

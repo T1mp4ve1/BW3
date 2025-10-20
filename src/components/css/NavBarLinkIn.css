@@ -1,23 +1,26 @@
+/* NavBar */
 .w-90 {
     width: 90%;
 }
 
-.container a {
+.navBarContainer a {
     color: #666666;
     text-decoration: none;
     padding: 0;
     font-size: 0.8rem;
 }
 
-.container a:hover {
+.navBarContainer a:hover {
     color: #000000;
 }
 
-.container img {
+.navBarContainer img {
     width: 25px;
     height: 25px;
 }
 
-p {
+.navBarContainer p {
     margin: 0;
 }
+
+/* Footer */
