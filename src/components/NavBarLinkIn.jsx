@@ -16,7 +16,7 @@ const NavBarLinkIn = () => {
   return (
     <Navbar expand="lg" className="bg-light p-0 border-bottom">
       <Container className=" d-flex justify-content-center">
-        <Row className="m-0">
+        <Row className="m-0 w-90">
           <Col md={4} className="d-flex align-items-center">
             <Navbar.Brand href="#">
               <i className="bi bi-linkedin fs-2 text-primary"></i>
