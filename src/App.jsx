@@ -1,11 +1,17 @@
-import "bootstrap/dist/css/bootstrap.min.css";
 import "./App.css";
-import Asidex from "./componentsAside/Asidex";
+import { BrowserRouter, Routes } from "react-router";
+import "bootstrap/dist/css/bootstrap.min.css";
+import "bootstrap-icons/font/bootstrap-icons.css";
+import NavBarLinkIn from "./components/NavBarLinkIn";
+import { Container } from "react-bootstrap";
 
 function App() {
   return (
     <>
-      <Asidex />
+      <BrowserRouter>
+        <NavBarLinkIn />
+        <Routes></Routes>
+      </BrowserRouter>
     </>
   );
 }
