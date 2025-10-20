@@ -2,137 +2,6 @@ import { useState, useEffect } from "react";
 import { Container, Card, Button, Image } from "react-bootstrap";
 import styled from "styled-components";
 
-/* ====== STYLED COMPONENTS ====== */
-
-const ProfileCard = styled(Card)`
-  border: none;
-  border-radius: 12px;
-  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.08);
-  max-width: 800px;
-  overflow: hidden;
-  background-color: #fff;
-  margin-top: 1.5rem;
-`;
-
-const ProfileCover = styled.div`
-  background: linear-gradient(90deg, #004182, #0077b5);
-  height: 200px;
-  width: 100%;
-  position: relative;
-`;
-
-const ProfilePictureWrapper = styled.div`
-  position: absolute;
-  top: calc(200px - 250px); /* foto a metà tra blu e bianco */
-  left: 24px;
-  z-index: 5;
-
-  @media (max-width: 768px) {
-    left: 50%;
-    transform: translateX(-50%);
-  }
-`;
-
-const ProfilePicture = styled.img`
-  width: 120px;
-  height: 120px;
-  border-radius: 50%;
-  border: 4px solid white;
-  object-fit: cover;
-  background-color: #fff;
-  box-shadow: 0 0 4px rgba(0, 0, 0, 0.2);
-
-  @media (max-width: 768px) {
-    width: 100px;
-    height: 100px;
-  }
-`;
-
-const ProfileInfo = styled.div`
-  margin-left: 160px;
-  margin-top: 16px;
-  color: #000;
-
-  h5 {
-    font-size: 1.2rem;
-    color: #0a66c2;
-  }
-
-  p {
-    font-size: 0.95rem;
-    margin-bottom: 0.25rem;
-  }
-
-  .text-muted {
-    color: #666 !important;
-  }
-
-  .text-secondary {
-    color: #6b6b6b !important;
-  }
-
-  @media (max-width: 768px) {
-    margin-left: 0;
-    margin-top: 80px;
-    text-align: center;
-  }
-
-  @media (max-width: 480px) {
-    h5 {
-      font-size: 1rem;
-    }
-
-    p {
-      font-size: 0.85rem;
-    }
-  }
-`;
-
-const PrimaryButton = styled(Button)`
-  background-color: #0a66c2 !important;
-  border: none !important;
-  font-weight: 600 !important;
-
-  &:hover {
-    background-color: #004182 !important;
-  }
-
-  @media (max-width: 768px) {
-    font-size: 0.85rem !important;
-    padding: 4px 10px !important;
-  }
-`;
-
-const OutlineButton = styled(Button)`
-  border-color: #ddd !important;
-  color: #444 !important;
-  font-weight: 600 !important;
-
-  &:hover {
-    background-color: #f3f2ef !important;
-    border-color: #ccc !important;
-  }
-
-  @media (max-width: 768px) {
-    font-size: 0.85rem !important;
-    padding: 4px 10px !important;
-  }
-`;
-
-const SkillItem = styled.div`
-  padding: 8px 0;
-
-  p {
-    margin: 0;
-  }
-
-  hr {
-    margin: 10px 0;
-    border: none;
-    border-top: 1px solid #e6e6e6;
-  }
-`;
-
 export default function ProfileMain() {
   const [profileData, setProfileData] = useState([]);
 
@@ -156,6 +25,7 @@ export default function ProfileMain() {
       {profileData.map((myData) => (
         <Container key={myData._id}>
           {/* ===== PROFILE SECTION ===== */}
+
           <ProfileCard>
             <ProfileCover />
             <Card.Body className="position-relative bg-white pt-0 pb-3">
@@ -304,3 +174,134 @@ export default function ProfileMain() {
     </>
   );
 }
+
+/* ====== STYLED COMPONENTS ====== */
+
+const ProfileCard = styled(Card)`
+  border: none;
+  border-radius: 12px;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.08);
+  max-width: 800px;
+  overflow: hidden;
+  background-color: #fff;
+  margin-top: 1.5rem;
+`;
+
+const ProfileCover = styled.div`
+  background: linear-gradient(90deg, #004182, #0077b5);
+  height: 200px;
+  width: 100%;
+  position: relative;
+`;
+
+const ProfilePictureWrapper = styled.div`
+  position: absolute;
+  top: calc(200px - 250px); /* foto a metà tra blu e bianco */
+  left: 24px;
+  z-index: 5;
+
+  @media (max-width: 768px) {
+    left: 50%;
+    transform: translateX(-50%);
+  }
+`;
+
+const ProfilePicture = styled.img`
+  width: 120px;
+  height: 120px;
+  border-radius: 50%;
+  border: 4px solid white;
+  object-fit: cover;
+  background-color: #fff;
+  box-shadow: 0 0 4px rgba(0, 0, 0, 0.2);
+
+  @media (max-width: 768px) {
+    width: 100px;
+    height: 100px;
+  }
+`;
+
+const ProfileInfo = styled.div`
+  margin-left: 160px;
+  margin-top: 16px;
+  color: #000;
+
+  h5 {
+    font-size: 1.2rem;
+    color: #0a66c2;
+  }
+
+  p {
+    font-size: 0.95rem;
+    margin-bottom: 0.25rem;
+  }
+
+  .text-muted {
+    color: #666 !important;
+  }
+
+  .text-secondary {
+    color: #6b6b6b !important;
+  }
+
+  @media (max-width: 768px) {
+    margin-left: 0;
+    margin-top: 80px;
+    text-align: center;
+  }
+
+  @media (max-width: 480px) {
+    h5 {
+      font-size: 1rem;
+    }
+
+    p {
+      font-size: 0.85rem;
+    }
+  }
+`;
+
+const PrimaryButton = styled(Button)`
+  background-color: #0a66c2 !important;
+  border: none !important;
+  font-weight: 600 !important;
+
+  &:hover {
+    background-color: #004182 !important;
+  }
+
+  @media (max-width: 768px) {
+    font-size: 0.85rem !important;
+    padding: 4px 10px !important;
+  }
+`;
+
+const OutlineButton = styled(Button)`
+  border-color: #ddd !important;
+  color: #444 !important;
+  font-weight: 600 !important;
+
+  &:hover {
+    background-color: #f3f2ef !important;
+    border-color: #ccc !important;
+  }
+
+  @media (max-width: 768px) {
+    font-size: 0.85rem !important;
+    padding: 4px 10px !important;
+  }
+`;
+
+const SkillItem = styled.div`
+  padding: 8px 0;
+
+  p {
+    margin: 0;
+  }
+
+  hr {
+    margin: 10px 0;
+    border: none;
+    border-top: 1px solid #e6e6e6;
+  }
+`;
