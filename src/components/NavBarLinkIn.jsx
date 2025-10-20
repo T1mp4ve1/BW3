@@ -14,7 +14,7 @@ import imagePlaceHolder from "../assets/logo.png";
 
 const NavBarLinkIn = () => {
   return (
-    <Navbar expand="lg" className="bg-light p-0 border-bottom">
+    <Navbar expand="lg" className="bg-light py-1 border-bottom">
       <Container className=" d-flex justify-content-center">
         <Row className="m-0 w-90">
           <Col md={4} className="d-flex align-items-center">
@@ -26,14 +26,14 @@ const NavBarLinkIn = () => {
               <Form.Control
                 type="search"
                 placeholder="Cerca"
-                className="me-2 ps-5 rounded-5 border-secondary"
+                className="me-2 ps-5 py-1 pe-5 rounded-5 border-secondary"
                 aria-label="Search"
               />
             </Form>
           </Col>
 
           <Col
-            md={6}
+            md={5}
             className="d-flex  justify-content-end align-items-center"
           >
             <Nav className="d-flex align-items-end gap-4">
@@ -81,7 +81,7 @@ const NavBarLinkIn = () => {
           </Col>
           {/* dropdown aziende */}
           <Col
-            md={2}
+            md={3}
             className="d-flex align-items-center justify-content-end border-start"
           >
             <div className="d-flex flex-column align-items-center  me-3">
@@ -111,6 +111,11 @@ const NavBarLinkIn = () => {
                 color: "#9e6427ff",
                 textDecoration: "underline",
                 fontSize: 12,
+                display: "-webkit-box",
+                WebkitLineClamp: 2,
+                WebkitBoxOrient: "vertical",
+                overflow: "hidden",
+                textOverflow: "ellipsis",
               }}
             >
               Prova Premium per 0 EUR
