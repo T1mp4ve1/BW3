@@ -67,7 +67,7 @@ const Asidex = () => {
               <Person className="me-2" size={32} />
               <div>
                 <h3 className="m-0">
-                  {p.name} {p.descrizione} — {""}
+                  {p.name} {p.descrizione}
                 </h3>
               </div>
             </div>
