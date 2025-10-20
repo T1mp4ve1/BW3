@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { Card, Button } from "react-bootstrap";
 import { Globe, People, Person } from "react-bootstrap-icons";
-// import { VITE_MY_SECRET_KEY } from "../../.env.local";
+
 const Asidex = () => {
   const [personeConsigliate, setPersoneConsigliate] = useState([]);
 
@@ -24,9 +24,10 @@ const Asidex = () => {
   useEffect(() => {
     const fetchProfiles = async () => {
       try {
+        const token = import.meta.env.VITE_MY_SECRET_KEY;
         const res = await fetch("https://striveschool-api.herokuapp.com/api/profile/", {
           headers: {
-            Authorization: `Bearer metti la tua chiave`,
+            Authorization: `Bearer ${token}`,
             "Content-Type": "application/json",
           },
         });
@@ -56,7 +57,7 @@ const Asidex = () => {
           <h2 className="m-0">a sinistra sarà dobbiamo metterci un icona//Titolo annuncio</h2>
         </div>
         <p>Dettagli dell'annuncio qui...</p>
-        <Button>Segui</Button>
+        <Button className="text-dark rounded-pill bg-white">Segui</Button>
       </Card>
 
       <Card className="mb-3 p-2">
@@ -72,7 +73,7 @@ const Asidex = () => {
                 </h3>
               </div>
             </div>
-            <Button className="mt-1 mb-2">Visualizza</Button>
+            <Button className="mt-1 mb-2 text-dark rounded-pill bg-white border-dark ">Visualizza</Button>
           </div>
         ))}
       </Card>
@@ -90,10 +91,10 @@ const Asidex = () => {
                 <p className="m-0">{p.title}</p>
               </div>
             </div>
-            <Button className="mt-1 mb-2">Collegati</Button>
+            <Button className="mt-1 mb-2 text-dark rounded-pill bg-white border-dark">Collegati</Button>
           </div>
         ))}
-        <Button className="mt-2">Mostra tutto</Button>
+        <Button className="mt-2 text-dark rounded-pill bg-white border-dark">Mostra tutto</Button>
       </Card>
 
       <Card className="p-2">
@@ -110,10 +111,10 @@ const Asidex = () => {
                 <p className="m-0">{a.followers} follower</p>
               </div>
             </div>
-            <Button className="mt-1 mb-2">Segui</Button>
+            <Button className="mt-1 mb-2 text-dark rounded-pill bg-white border-dark">Segui</Button>
           </div>
         ))}
-        <Button className="mt-2">Mostra tutto</Button>
+        <Button className="mt-2 text-dark rounded-pill bg-white border-dark">Mostra tutto</Button>
       </Card>
     </aside>
   );
