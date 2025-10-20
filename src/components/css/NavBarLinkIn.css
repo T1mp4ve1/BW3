@@ -5,6 +5,10 @@
     font-size: 0.8rem;
 }
 
+.container a:hover {
+    color: #000000;
+}
+
 .container img {
     width: 25px;
     height: 25px;

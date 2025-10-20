@@ -32,30 +32,33 @@ const NavBarLinkIn = () => {
             </Form>
           </Col>
 
-          <Col md={6} className="d-flex align-items-center">
-            <Nav className="d-flex align-items-end gap-5">
-              <Link className="d-flex flex-column align-items-center">
+          <Col
+            md={6}
+            className="d-flex  justify-content-end align-items-center"
+          >
+            <Nav className="d-flex align-items-end gap-4">
+              <Link className="d-flex flex-column align-items-center mx-1">
                 <i className="bi bi-house-fill fs-5"></i>
                 <p className="m-0">Home</p>
               </Link>
-              <Link className="d-flex flex-column align-items-center">
+              <Link className="d-flex flex-column align-items-center mx-1">
                 <i className="bi bi-people-fill fs-5"></i>
                 <p className="m-0">Rete</p>
               </Link>
-              <Link className="d-flex flex-column align-items-center">
+              <Link className="d-flex flex-column align-items-center mx-1">
                 <i className="bi bi-briefcase-fill fs-5"></i>
                 <p className="m-0">Lavoro</p>
               </Link>
-              <Link className="d-flex flex-column align-items-center">
+              <Link className="d-flex flex-column align-items-center mx-1">
                 <i className="bi bi-chat-dots-fill fs-5"></i>
                 <p className="m-0">Messaggistica</p>
               </Link>
-              <Link className="d-flex flex-column align-items-center">
+              <Link className="d-flex flex-column align-items-center mx-1">
                 <i className="bi bi-bell-fill fs-5"></i>
                 <p className="m-0">Notifiche</p>
               </Link>
               {/* dropdown Tu */}
-              <div className="d-flex flex-column align-items-center">
+              <div className="d-flex flex-column align-items-center mx-1">
                 <div>
                   <img
                     className="rounded-5"
