@@ -9,10 +9,8 @@ function App() {
   return (
     <>
       <BrowserRouter>
-        <Container fluid className="bg-dark">
-          <NavBarLinkIn />
-          <Routes></Routes>
-        </Container>
+        <NavBarLinkIn />
+        <Routes></Routes>
       </BrowserRouter>
     </>
   );

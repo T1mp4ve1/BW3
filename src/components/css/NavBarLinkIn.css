@@ -1,4 +1,15 @@
 .container a {
     color: #666666;
     text-decoration: none;
+    padding: 0;
+    font-size: 0.8rem;
+}
+
+.container img {
+    width: 25px;
+    height: 25px;
+}
+
+p {
+    margin: 0;
 }
