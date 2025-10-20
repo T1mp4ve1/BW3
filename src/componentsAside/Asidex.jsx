@@ -41,12 +41,10 @@ const Asidex = () => {
   }, []);
   return (
     <aside className="p-3" style={{ width: "300px" }}>
-      <Card className="mb-3 p-2">
-        <h2>Lingua del profilo</h2>
+      <Card className="mb-3 p-2 ">
+        <h2 className="mb-2">Lingua del profilo</h2>
         <p>Italiano</p>
-      </Card>
-
-      <Card className="mb-3 p-2">
+        <hr />
         <h2>Profilo pubblico e URL</h2>
         <p>www.linkcausale.com</p>
       </Card>
@@ -57,7 +55,7 @@ const Asidex = () => {
           <h2 className="m-0">a sinistra sarà dobbiamo metterci un icona//Titolo annuncio</h2>
         </div>
         <p>Dettagli dell'annuncio qui...</p>
-        <Button className="text-dark rounded-pill bg-white">Segui</Button>
+        <Button className="text-dark rounded-pill bg-white border-dark">Segui</Button>
       </Card>
 
       <Card className="mb-3 p-2">
@@ -73,7 +71,9 @@ const Asidex = () => {
                 </h3>
               </div>
             </div>
-            <Button className="mt-1 mb-2 text-dark rounded-pill bg-white border-dark ">Visualizza</Button>
+            <div className="d-flex justify-content-center mt-1 mb-2">
+              <Button className="mt-1 mb-2 text-dark rounded-pill bg-white border-dark ">Visualizza</Button>
+            </div>
           </div>
         ))}
       </Card>
@@ -91,7 +91,9 @@ const Asidex = () => {
                 <p className="m-0">{p.title}</p>
               </div>
             </div>
-            <Button className="mt-1 mb-2 text-dark rounded-pill bg-white border-dark">Collegati</Button>
+            <div className="d-flex justify-content-center mt-1 mb-2">
+              <Button className="mt-1 mb-2 text-dark rounded-pill bg-white border-dark">Collegati</Button>
+            </div>
           </div>
         ))}
         <Button className="mt-2 text-dark rounded-pill bg-white border-dark">Mostra tutto</Button>
@@ -111,7 +113,9 @@ const Asidex = () => {
                 <p className="m-0">{a.followers} follower</p>
               </div>
             </div>
-            <Button className="mt-1 mb-2 text-dark rounded-pill bg-white border-dark">Segui</Button>
+            <div className="d-flex justify-content-center mt-1 mb-2">
+              <Button className="mt-1 mb-2 text-dark rounded-pill bg-white border-dark">Segui</Button>
+            </div>
           </div>
         ))}
         <Button className="mt-2 text-dark rounded-pill bg-white border-dark">Mostra tutto</Button>
