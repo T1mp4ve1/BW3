@@ -12,7 +12,7 @@ const FooterLinkIn = () => {
   return (
     <Container className="d-flex justify-content-center FooterContainer">
       <Row
-        className="m-0"
+        className="my-5"
         style={{
           width: "90%",
         }}
@@ -33,7 +33,6 @@ const FooterLinkIn = () => {
           <a href="/" onClick={(e) => e.preventDefault()} className="mb-2">
             Centro sicurezza
           </a>
-          <p>LinkedIn Corporation © 2025</p>
         </Col>
         <Col className="d-flex flex-column">
           {" "}
@@ -107,6 +106,7 @@ const FooterLinkIn = () => {
             </Dropdown.Item>
           </DropdownButton>
         </Col>
+        <p>LinkedIn Corporation © 2025</p>
       </Row>
     </Container>
   );

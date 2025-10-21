@@ -48,7 +48,10 @@ const NavBarLinkIn = () => {
             className="d-flex  justify-content-end align-items-center"
           >
             <Nav className="d-flex flex-row align-items-center gap-1">
-              <Link className="d-flex flex-column align-items-center mx-1">
+              <Link
+                to={"/"}
+                className="d-flex flex-column align-items-center mx-1"
+              >
                 <i className="bi bi-house-fill fs-5"></i>
                 <p className="m-0 d-none d-lg-block">Home</p>
               </Link>
@@ -83,7 +86,9 @@ const NavBarLinkIn = () => {
                 >
                   <NavDropdown.Item href="#action1">Action</NavDropdown.Item>
                   <NavDropdown.Item href="#action2">
-                    Another action
+                    <Link to={"/profile"}>
+                      <p>Visualiza il profilo</p>
+                    </Link>
                   </NavDropdown.Item>
                   <NavDropdown.Divider />
                   <NavDropdown.Item href="#action3">

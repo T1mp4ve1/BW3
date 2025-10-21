@@ -25,7 +25,8 @@ const Asidex = () => {
   useEffect(() => {
     const fetchProfiles = async () => {
       try {
-        const token = import.meta.env.VITE_MY_SECRET_KEY;
+        const token =
+          "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2OGY1ZTkyNDZkZmMyMDAwMTVkMzk4OGEiLCJpYXQiOjE3NjA5NDY0NjgsImV4cCI6MTc2MjE1NjA2OH0.vfTreQVrxZKrni-xT2m7ZyRkBXyqogwoRZAlwlxXckc";
         const res = await fetch(
           "https://striveschool-api.herokuapp.com/api/profile/",
           {
@@ -43,14 +44,21 @@ const Asidex = () => {
     };
     fetchProfiles();
   }, []);
+
   return (
     <aside className="p-3 fontSize mt-2" style={{ width: "300px" }}>
       <Card className="mb-3 p-2 " style={{ height: "180px" }}>
-        <h5 className="mb-2">Lingua del profilo</h5>
-        <p>Italiano</p>
+        <div className="d-flex flex-row justify-content-between">
+          <h5 className="mb-2">Lingua del profilo</h5>
+          <i className="bi bi-pencil fs-5 ms-4"></i>
+        </div>
+        <p className="text-muted">Italiano</p>
         <hr />
-        <h5>Profilo pubblico e URL</h5>
-        <p>www.linkcausale.com</p>
+        <div className="d-flex flex-row justify-content-between">
+          <h5>Profilo pubblico e URL</h5>
+          <i className="bi bi-pencil fs-5 ms-4"></i>
+        </div>
+        <p className="text-muted">www.linkcausale.com</p>
       </Card>
 
       <Card className="mb-3 p-2">
