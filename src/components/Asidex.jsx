@@ -46,8 +46,8 @@ const Asidex = () => {
   }, []);
 
   return (
-    <aside className="p-3 fontSize mt-2" style={{ width: "300px" }}>
-      <Card className="mb-3 p-2 " style={{ height: "180px" }}>
+    <aside className="p-3 fontSize mt-2">
+      <Card className="mb-3 p-2 ">
         <h5 className="mb-2">Lingua del profilo</h5>
         <p>Italiano</p>
         <hr />
