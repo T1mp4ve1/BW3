@@ -13,16 +13,16 @@ function App() {
     <>
       <BrowserRouter>
         <NavBarLinkIn />
-        <Container>
+        <Container className="d-flex justify-content-center">
           <Routes>
             <Route
               path="/"
               element={
-                <Row>
-                  <Col xs={8} className="d-flex justify-content-center">
+                <Row className="d-flex justify-content-center">
+                  <Col xs={9} className="d-flex justify-content-center">
                     <ProfileMain />
                   </Col>
-                  <Col xs={4} className="d-flex justify-content-center">
+                  <Col xs={3} className="d-flex justify-content-center">
                     <Asidex />
                   </Col>
                 </Row>
