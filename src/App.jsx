@@ -4,6 +4,7 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import "bootstrap-icons/font/bootstrap-icons.css";
 import NavBarLinkIn from "./components/NavBarLinkIn";
 import { Container } from "react-bootstrap";
+import Asidex from "./componentsAside/Asidex";
 
 function App() {
   return (
@@ -11,6 +12,7 @@ function App() {
       <BrowserRouter>
         <NavBarLinkIn />
         <Routes></Routes>
+        <Asidex />
       </BrowserRouter>
     </>
   );
