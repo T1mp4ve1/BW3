@@ -1,9 +1,10 @@
 import { useState, useEffect } from "react";
-import { Container, Card, Button, Image } from "react-bootstrap";
+import { Card, Button, Image } from "react-bootstrap";
 import styled from "styled-components";
 
 export default function ProfileMain() {
   const [profileData, setProfileData] = useState([]);
+  const [experienceData, setExperienceData] = useState([]);
 
   useEffect(() => {
     const API_KEY =
@@ -20,10 +21,26 @@ export default function ProfileMain() {
       .catch((err) => console.error("Errore:", err));
   }, []);
 
+  useEffect(() => {
+    const API_KEY =
+      "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2OGY1ZjNhNzZkZmMyMDAwMTVkMzk4OGUiLCJpYXQiOjE3NjA5NDkxNTksImV4cCI6MTc2MjE1ODc1OX0.gqqN2lVthoiffLa3428v52flN37Ms2JA0gaRl5xAYf4";
+    const url =
+      "https://striveschool-api.herokuapp.com/api/profile/68f5f3a76dfc200015d3988e/experiences";
+
+    fetch(url, {
+      headers: {
+        Authorization: `Bearer ${API_KEY}`,
+      },
+    })
+      .then((res) => res.json())
+      .then((data) => setExperienceData(data))
+      .catch((err) => console.error("Errore:", err));
+  }, []);
+
   return (
     <>
       {profileData.map((myData) => (
-        <Container key={myData._id}>
+        <div key={myData._id} className="mx-2">
           {/* ===== PROFILE SECTION ===== */}
 
           <ProfileCard>
@@ -81,37 +98,37 @@ export default function ProfileMain() {
           </ProfileCard>
 
           {/* ===== EXPERIENCE ===== */}
-          <ProfileCard className="p-3">
-            <h5 className="fw-semibold mb-3">Experience</h5>
+          {experienceData.map((exp) => (
+            <ProfileCard className="p-3">
+              <h5 className="fw-semibold mb-3">Experience</h5>
 
-            <div className="d-flex mb-3">
-              <Image
-                src="https://upload.wikimedia.org/wikipedia/commons/3/31/Fiverr_Logo.svg"
-                alt="Fiverr"
-                roundedCircle
-                width={48}
-                height={48}
-                className="me-3"
-              />
-              <div>
-                <h6 className="mb-0 fw-semibold">Web Developer</h6>
-                <p className="mb-0 text-muted" style={{ fontSize: "0.9rem" }}>
-                  Fiverr
-                </p>
-                <p
-                  className="text-secondary mb-1"
-                  style={{ fontSize: "0.85rem" }}
-                >
-                  Jan 2022 – Present • 3 yrs 10 mos
-                </p>
-                <p className="mb-0" style={{ fontSize: "0.9rem" }}>
-                  Developed and maintained high-quality code following industry
-                  standards, improving performance and maintainability.
-                </p>
+              <div className="d-flex mb-3">
+                <Image
+                  src={exp.image}
+                  alt="Fiverr"
+                  roundedCircle
+                  width={48}
+                  height={48}
+                  className="me-3"
+                />
+                <div>
+                  <h6 className="mb-0 fw-semibold">{exp.role}</h6>
+                  <p className="mb-0 text-muted" style={{ fontSize: "0.9rem" }}>
+                    {exp.company}
+                  </p>
+                  <p
+                    className="text-secondary mb-1"
+                    style={{ fontSize: "0.85rem" }}
+                  >
+                    {exp.startDate} | {exp.endDate}
+                  </p>
+                  <p className="mb-0" style={{ fontSize: "0.9rem" }}>
+                    {exp.description}
+                  </p>
+                </div>
               </div>
-            </div>
-          </ProfileCard>
-
+            </ProfileCard>
+          ))}
           {/* ===== EDUCATION ===== */}
           <ProfileCard className="p-3">
             <h5 className="fw-semibold mb-3">Education</h5>
@@ -169,7 +186,7 @@ export default function ProfileMain() {
               </p>
             </SkillItem>
           </ProfileCard>
-        </Container>
+        </div>
       ))}
     </>
   );
