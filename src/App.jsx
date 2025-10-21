@@ -21,10 +21,10 @@ function App() {
               path="/profile"
               element={
                 <Row className="d-flex justify-content-center">
-                  <Col xs={8} className="d-flex justify-content-center">
+                  <Col xs={8} className="p-0">
                     <ProfileMain />
                   </Col>
-                  <Col xs={4} className="d-flex justify-content-center">
+                  <Col xs={4} className="p-0">
                     <Asidex />
                   </Col>
                 </Row>
