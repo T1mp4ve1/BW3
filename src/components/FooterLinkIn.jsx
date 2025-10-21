@@ -65,7 +65,7 @@ const FooterLinkIn = () => {
         </Col>
         <Col className="d-flex flex-column grateLinks">
           <div className="d-flex">
-            <i class="bi bi-question-circle-fill fs-4 text-dark me-2"></i>
+            <i className="bi bi-question-circle-fill fs-4 text-dark me-2"></i>
             <div>
               <a href="/" onClick={(e) => e.preventDefault()}>
                 Domande?
@@ -74,7 +74,7 @@ const FooterLinkIn = () => {
             </div>
           </div>
           <div className="d-flex">
-            <i class="bi bi-gear-fill fs-4 text-dark me-2"></i>
+            <i className="bi bi-gear-fill fs-4 text-dark me-2"></i>
             <div>
               <a href="/" onClick={(e) => e.preventDefault()}>
                 Gestisci il tuo account e la tua privacy
@@ -83,7 +83,7 @@ const FooterLinkIn = () => {
             </div>
           </div>
           <div className="d-flex">
-            <i class="bi bi-shield-shaded fs-4 text-dark me-2"></i>
+            <i className="bi bi-shield-shaded fs-4 text-dark me-2"></i>
             <div>
               <a href="/" onClick={(e) => e.preventDefault()}>
                 Trasparenza sui contenuti consigliati

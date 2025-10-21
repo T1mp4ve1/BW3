@@ -99,7 +99,7 @@ export default function ProfileMain() {
 
           {/* ===== EXPERIENCE ===== */}
           {experienceData.map((exp) => (
-            <ProfileCard className="p-3">
+            <ProfileCard key={myData._id} className="p-3">
               <h5 className="fw-semibold mb-3">Experience</h5>
 
               <div className="d-flex mb-3">
