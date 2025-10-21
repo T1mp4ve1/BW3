@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { Card, Button } from "react-bootstrap";
 import { Globe, People, Person } from "react-bootstrap-icons";
-import "./asidex.css";
+import "../components/css/Asidex.css";
 
 const Asidex = () => {
   const [personeConsigliate, setPersoneConsigliate] = useState([]);

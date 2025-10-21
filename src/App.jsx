@@ -1,24 +1,22 @@
-import { Row, Col } from "react-bootstrap";
 import "./App.css";
-import Asidex from "./components/Asidex";
-import ProfileMain from "./components/ProfileMain";
+import FooterLinkIn from "./components/FooterLinkIn";
 import NavBarLinkIn from "./components/NavBarLinkIn";
+import Home from "./pages/Home";
+import Profile from "./pages/Profile";
+import { Routes, Route } from "react-router-dom";
 
-function App() {
+export default function App() {
   return (
     <>
       <NavBarLinkIn />
+      <Routes>
+        <Route path="/" element={<Home />} />
 
-      <Row>
-        <Col className="col-sm-8">
-          <ProfileMain />
-        </Col>
-        <Col className="col-sm-4">
-          <Asidex />
-        </Col>
-      </Row>
+        <Route path="/profile" element={<Profile />} />
+      </Routes>
+      <div className="mt-5">
+        <FooterLinkIn />
+      </div>
     </>
   );
 }
-
-export default App;
