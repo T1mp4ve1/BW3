@@ -1,19 +1,23 @@
+import { Container, Row, Col } from "react-bootstrap";
 import "./App.css";
-import { BrowserRouter, Routes } from "react-router";
-import "bootstrap/dist/css/bootstrap.min.css";
-import "bootstrap-icons/font/bootstrap-icons.css";
+import Asidex from "./components/Asidex";
+import ProfileMain from "./components/ProfileMain";
 import NavBarLinkIn from "./components/NavBarLinkIn";
-import { Container } from "react-bootstrap";
-import Asidex from "./componentsAside/Asidex";
 
 function App() {
   return (
     <>
-      <BrowserRouter>
-        <NavBarLinkIn />
-        <Routes></Routes>
-        <Asidex />
-      </BrowserRouter>
+      <NavBarLinkIn />
+      <Container>
+        <Row>
+          <Col className="col-sm-8">
+            <ProfileMain />
+          </Col>
+          <Col className="col-sm-4">
+            <Asidex />
+          </Col>
+        </Row>
+      </Container>
     </>
   );
 }

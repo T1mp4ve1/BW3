@@ -1,16 +1,16 @@
 import {
-  Button,
-  Container,
-  Nav,
   Navbar,
-  NavDropdown,
-  Form,
+  Container,
   Row,
   Col,
+  Nav,
+  NavDropdown,
+  Form,
 } from "react-bootstrap";
-import { Link } from "react-router";
-import "./css/NavBarLinkIn.css";
+import { Link } from "react-router-dom";
 import imagePlaceHolder from "../assets/logo.png";
+import "bootstrap-icons/font/bootstrap-icons.css";
+import "./css/NavBarLinkIn.css";
 
 const NavBarLinkIn = () => {
   return (
