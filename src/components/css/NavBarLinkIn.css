@@ -23,6 +23,11 @@
     margin: 0;
 }
 
+/* TU */
+.dropDownMenu a:hover {
+    color: #666666;
+    text-decoration: underline;
+}
 
 @media (max-width: 991px) {
     .dropdown-toggle::after {

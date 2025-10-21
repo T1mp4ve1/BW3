@@ -43,11 +43,11 @@ const NavBarLinkIn = () => {
           </Col>
 
           <Col
-            xs={7}
-            lg={5}
+            xs={8}
+            lg={6}
             className="d-flex  justify-content-end align-items-center"
           >
-            <Nav className="d-flex flex-row align-items-center gap-1">
+            <Nav className="d-flex flex-row align-items-center gap-1 gap-md-3 gap-lg-4">
               <Link
                 to={"/"}
                 className="d-flex flex-column align-items-center mx-1"
@@ -84,26 +84,114 @@ const NavBarLinkIn = () => {
                   title={<span className="d-none d-lg-inline">Tu</span>}
                   id="navbarScrollingDropdown"
                 >
-                  <NavDropdown.Item href="#action1">Action</NavDropdown.Item>
-                  <NavDropdown.Item href="#action2">
-                    <Link to={"/profile"}>
-                      <p>Visualiza il profilo</p>
-                    </Link>
-                  </NavDropdown.Item>
-                  <NavDropdown.Divider />
-                  <NavDropdown.Item href="#action3">
-                    Something else here
-                  </NavDropdown.Item>
+                  <div
+                    className="p-2 dropDownMenu"
+                    href="#action1"
+                    style={{
+                      width: "300px",
+                    }}
+                  >
+                    <div className="d-flex">
+                      <img
+                        className="rounded-5 me-2"
+                        src={imagePlaceHolder}
+                        alt="profileImage"
+                        style={{
+                          width: "55px",
+                          height: "55px",
+                        }}
+                      />
+                      <div>
+                        <h6 className="m-0">Pavel Timofeev</h6>
+                        <p
+                          style={{
+                            fontSize: 14,
+                          }}
+                        >
+                          Studente presso EPICODE Institute of Technology
+                        </p>
+                      </div>
+                    </div>
+                    <div className="border-bottom pb-2">
+                      <Link
+                        to={"/profile"}
+                        className="d-flex justify-content-center"
+                        style={{
+                          textDecoration: "none",
+                        }}
+                      >
+                        <Button
+                          variant="outline-primary"
+                          className="rounded-5 w-50 mt-1"
+                        >
+                          Visualiza profilo
+                        </Button>
+                      </Link>
+                    </div>
+                    <div className="my-2 d-flex flex-column border-bottom pb-2">
+                      <h6>Account</h6>
+                      <a
+                        href="/"
+                        onClick={(e) => e.preventDefault()}
+                        className="mb-2"
+                      >
+                        Impostazioni e privacy
+                      </a>
+                      <a
+                        href="/"
+                        onClick={(e) => e.preventDefault()}
+                        className="mb-2"
+                      >
+                        Guida
+                      </a>
+                      <a
+                        href="/"
+                        onClick={(e) => e.preventDefault()}
+                        className="mb-2"
+                      >
+                        Lingua
+                      </a>
+                    </div>
+                    <div className="my-2 d-flex flex-column border-bottom pb-2">
+                      <h6>Gestisci</h6>
+                      <a
+                        href="/"
+                        onClick={(e) => e.preventDefault()}
+                        className="mb-2"
+                      >
+                        Post e attività
+                      </a>
+                      <a
+                        href="/"
+                        onClick={(e) => e.preventDefault()}
+                        className="mb-2"
+                      >
+                        Account per la pubblicazione
+                      </a>
+                      <a
+                        href="/"
+                        onClick={(e) => e.preventDefault()}
+                        className="mb-2"
+                      >
+                        Lingua
+                      </a>
+                    </div>
+                    <div className="d-flex flex-column">
+                      <a href="/" onClick={(e) => e.preventDefault()}>
+                        Esci
+                      </a>
+                    </div>
+                  </div>
                 </NavDropdown>
               </div>
             </Nav>
           </Col>
           {/* dropdown aziende */}
           <Col
-            xs={3}
-            className="d-flex align-items-center justify-content-end border-start"
+            xs={2}
+            className="d-flex align-items-center justify-content-start border-start"
           >
-            <div className="d-flex flex-column align-items-center  me-3">
+            <div className="d-flex flex-column align-items-center me-3">
               <div
                 style={{
                   color: "#666666",
@@ -127,7 +215,7 @@ const NavBarLinkIn = () => {
                 </NavDropdown.Item>
               </NavDropdown>
             </div>
-            <a
+            {/* <a
               className="text-center"
               href="/"
               onClick={(e) => e.preventDefault()}
@@ -143,7 +231,7 @@ const NavBarLinkIn = () => {
               }}
             >
               Prova Premium per 0 EUR
-            </a>
+            </a> */}
           </Col>
         </Row>
       </Container>

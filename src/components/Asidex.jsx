@@ -58,7 +58,9 @@ const Asidex = () => {
           <h5>Profilo pubblico e URL</h5>
           <i className="bi bi-pencil fs-5 ms-4"></i>
         </div>
-        <p className="text-muted">www.linkcausale.com</p>
+        <p className="text-muted">
+          www.linkedin.com/in/pavel-timofeev-2bb5b938b
+        </p>
       </Card>
 
       <Card className="mb-3 p-2">
