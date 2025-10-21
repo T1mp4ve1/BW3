@@ -22,6 +22,7 @@ const Asidex = () => {
     { name: "Azienda D", descizione: "la descrizione" },
     { name: "Azienda E", descizione: "la descrizione" },
   ];
+
   useEffect(() => {
     const fetchProfiles = async () => {
       try {
@@ -43,6 +44,7 @@ const Asidex = () => {
     };
     fetchProfiles();
   }, []);
+
   return (
     <aside className="p-3 fontSize mt-2" style={{ width: "300px" }}>
       <Card className="mb-3 p-2 " style={{ height: "180px" }}>

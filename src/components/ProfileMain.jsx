@@ -7,8 +7,7 @@ export default function ProfileMain() {
   const [experienceData, setExperienceData] = useState([]);
 
   useEffect(() => {
-    const API_KEY =
-      "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2OGY1ZjNhNzZkZmMyMDAwMTVkMzk4OGUiLCJpYXQiOjE3NjA5NDkxNTksImV4cCI6MTc2MjE1ODc1OX0.gqqN2lVthoiffLa3428v52flN37Ms2JA0gaRl5xAYf4";
+    const API_KEY = import.meta.env.VITE_MY_SECRET_KEY;
     const url = "https://striveschool-api.herokuapp.com/api/profile/me";
 
     fetch(url, {
@@ -22,8 +21,7 @@ export default function ProfileMain() {
   }, []);
 
   useEffect(() => {
-    const API_KEY =
-      "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2OGY1ZjNhNzZkZmMyMDAwMTVkMzk4OGUiLCJpYXQiOjE3NjA5NDkxNTksImV4cCI6MTc2MjE1ODc1OX0.gqqN2lVthoiffLa3428v52flN37Ms2JA0gaRl5xAYf4";
+    const API_KEY = import.meta.env.VITE_MY_SECRET_KEY;
     const url =
       "https://striveschool-api.herokuapp.com/api/profile/68f5f3a76dfc200015d3988e/experiences";
 
@@ -216,11 +214,6 @@ const ProfilePictureWrapper = styled.div`
   top: calc(200px - 250px); /* foto a metà tra blu e bianco */
   left: 24px;
   z-index: 5;
-
-  @media (max-width: 768px) {
-    left: 50%;
-    transform: translateX(-50%);
-  }
 `;
 
 const ProfilePicture = styled.img`
@@ -239,9 +232,10 @@ const ProfilePicture = styled.img`
 `;
 
 const ProfileInfo = styled.div`
-  margin-left: 160px;
-  margin-top: 16px;
+  position: relative;
+  margin-top: 80px;
   color: #000;
+  z-index: 2;
 
   h5 {
     font-size: 1.2rem;
@@ -262,9 +256,7 @@ const ProfileInfo = styled.div`
   }
 
   @media (max-width: 768px) {
-    margin-left: 0;
-    margin-top: 80px;
-    text-align: center;
+    margin-top: 70px;
   }
 
   @media (max-width: 480px) {
@@ -277,7 +269,6 @@ const ProfileInfo = styled.div`
     }
   }
 `;
-
 const PrimaryButton = styled(Button)`
   background-color: #0a66c2 !important;
   border: none !important;

@@ -15,7 +15,7 @@ import imagePlaceHolder from "../assets/logo.png";
 
 const NavBarLinkIn = () => {
   return (
-    <Navbar expand="lg" className="bg-light py-1 border-bottom">
+    <Navbar expand="lg" className="bg-white py-1 border-bottom">
       <Container className="d-flex justify-content-center align-content-center navBarContainer m-xs-0 m-lg-auto">
         <Row className="m-0 w-90">
           <Col
@@ -66,7 +66,7 @@ const NavBarLinkIn = () => {
               </Link>
               <Link className="d-flex flex-column align-items-center mx-1">
                 <i className="bi bi-chat-dots-fill fs-5"></i>
-                <p className="m-0 d-none d-lg-block">Messaggistica</p>
+                <p className="m-0 d-none d-lg-block">Messaggi</p>
               </Link>
               <Link className="d-flex flex-column align-items-center mx-1">
                 <i className="bi bi-bell-fill fs-5"></i>

@@ -10,7 +10,7 @@ import "./css/FooterLinkIn.css";
 
 const FooterLinkIn = () => {
   return (
-    <Container className="d-flex justify-content-center FooterContainer">
+    <Container className="d-flex justify-content-center FooterContainer mb-5">
       <Row
         className="m-0"
         style={{
