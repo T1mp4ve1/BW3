@@ -12,8 +12,26 @@ import {
 import { Link } from "react-router";
 import "./css/NavBarLinkIn.css";
 import imagePlaceHolder from "../assets/logo.png";
+import { useEffect, useState } from "react";
 
 const NavBarLinkIn = () => {
+  const [profileData, setProfileData] = useState([]);
+
+  useEffect(() => {
+    const API_KEY =
+      "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2OGY1ZTkyNDZkZmMyMDAwMTVkMzk4OGEiLCJpYXQiOjE3NjA5NDY0NjgsImV4cCI6MTc2MjE1NjA2OH0.vfTreQVrxZKrni-xT2m7ZyRkBXyqogwoRZAlwlxXckc";
+    const url = "https://striveschool-api.herokuapp.com/api/profile/me";
+
+    fetch(url, {
+      headers: {
+        Authorization: `Bearer ${API_KEY}`,
+      },
+    })
+      .then((res) => res.json())
+      .then((data) => setProfileData(data))
+      .catch((err) => console.error("Errore:", err));
+  }, []);
+
   return (
     <Navbar expand="lg" className="bg-light py-1 border-bottom">
       <Container className="d-flex justify-content-center align-content-center navBarContainer m-xs-0 m-lg-auto">
@@ -97,7 +115,7 @@ const NavBarLinkIn = () => {
                     <div className="d-flex">
                       <img
                         className="rounded-5 me-2"
-                        src={imagePlaceHolder}
+                        src={profileData.image}
                         alt="profileImage"
                         style={{
                           width: "55px",
@@ -105,7 +123,9 @@ const NavBarLinkIn = () => {
                         }}
                       />
                       <div>
-                        <h6 className="m-0">Pavel Timofeev</h6>
+                        <h6 className="m-0">
+                          {profileData.name} {profileData.surname}
+                        </h6>
                         <p
                           style={{
                             fontSize: 14,
