@@ -33,6 +33,7 @@ const FooterLinkIn = () => {
           <a href="/" onClick={(e) => e.preventDefault()} className="mb-2">
             Centro sicurezza
           </a>
+          <p>LinkedIn Corporation © 2025</p>
         </Col>
         <Col className="d-flex flex-column">
           {" "}
