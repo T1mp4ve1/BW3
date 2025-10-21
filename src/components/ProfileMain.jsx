@@ -199,7 +199,7 @@ const ProfileCard = styled(Card)`
   max-width: 800px;
   overflow: hidden;
   background-color: #fff;
-  margin-top: 1.5rem;
+  margin-top: 0.5rem;
 `;
 
 const ProfileCover = styled.div`

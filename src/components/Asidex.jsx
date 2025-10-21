@@ -46,8 +46,8 @@ const Asidex = () => {
   }, []);
 
   return (
-    <aside className="p-3 fontSize mt-2">
-      <Card className="mb-3 p-2 ">
+    <aside className="fontSize mt-2">
+      <Card className="mb-2 p-2 ">
         <h5 className="mb-2">Lingua del profilo</h5>
         <p>Italiano</p>
         <hr />
@@ -55,7 +55,7 @@ const Asidex = () => {
         <p>www.linkcausale.com</p>
       </Card>
 
-      <Card className="mb-3 p-2">
+      <Card className="mb-2 p-2">
         <div className="d-flex align-items-center mb-2">
           <Globe className="me-2" />
           <h5 className="m-0">
@@ -68,7 +68,7 @@ const Asidex = () => {
         </Button>
       </Card>
 
-      <Card className="mb-3 p-2">
+      <Card className="mb-2 p-2">
         <h5>Altri profili consultati</h5>
         <p>Solo per te</p>
         {companies.slice(0, 2).map((p, idx) => (
@@ -90,7 +90,7 @@ const Asidex = () => {
         ))}
       </Card>
 
-      <Card className="mb-3 p-2">
+      <Card className="mb-2 p-2">
         <h5>Persone che potresti conoscere</h5>
         {personeConsigliate.slice(0, 2).map((p, idx) => (
           <div key={idx} className="mb-2 border-bottom">
