@@ -23,4 +23,10 @@
     margin: 0;
 }
 
-/* Footer */
+
+@media (max-width: 991px) {
+    .dropdown-toggle::after {
+        display: none !important;
+    }
+
+}
