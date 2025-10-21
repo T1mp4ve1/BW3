@@ -6,7 +6,7 @@ import {
   Dropdown,
   DropdownButton,
 } from "react-bootstrap";
-// import "./css/FooterLinkIn.css";
+import "./css/FooterLinkIn.css";
 
 const FooterLinkIn = () => {
   return (
