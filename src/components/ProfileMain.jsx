@@ -37,32 +37,18 @@ export default function ProfileMain() {
                 <h5 className="fw-semibold mb-0">
                   {myData.name} {myData.surname}
                 </h5>
-                <p className="text-muted mb-0">
-                  {`${myData.title} | ${myData.bio}`}
-                </p>
+                <p className="text-muted mb-0">{`${myData.title} | ${myData.bio}`}</p>
                 <p className="text-secondary mb-1">{myData.area}</p>
                 <p className="text-secondary">500+ connections</p>
 
                 <div className="d-flex flex-wrap mt-3 gap-2">
-                  <PrimaryButton
-                    variant="primary"
-                    size="sm"
-                    className="rounded-pill px-3 fw-semibold"
-                  >
+                  <PrimaryButton variant="primary" size="sm" className="rounded-pill px-3 fw-semibold">
                     Open to work
                   </PrimaryButton>
-                  <OutlineButton
-                    variant="outline-secondary"
-                    size="sm"
-                    className="rounded-pill px-3 fw-semibold"
-                  >
+                  <OutlineButton variant="outline-secondary" size="sm" className="rounded-pill px-3 fw-semibold">
                     Add section
                   </OutlineButton>
-                  <OutlineButton
-                    variant="outline-secondary"
-                    size="sm"
-                    className="rounded-pill px-3 fw-semibold"
-                  >
+                  <OutlineButton variant="outline-secondary" size="sm" className="rounded-pill px-3 fw-semibold">
                     Enhance profile
                   </OutlineButton>
                 </div>
@@ -74,9 +60,8 @@ export default function ProfileMain() {
           <ProfileCard className="p-3">
             <h5 className="fw-semibold mb-2">About</h5>
             <p className="text-secondary mb-0">
-              Passionate about technology and problem-solving, {myData.name} is
-              a motivated developer focused on creating efficient, scalable
-              solutions and improving user experiences.
+              Passionate about technology and problem-solving, {myData.name} is a motivated developer focused on creating efficient, scalable solutions and
+              improving user experiences.
             </p>
           </ProfileCard>
 
@@ -98,15 +83,11 @@ export default function ProfileMain() {
                 <p className="mb-0 text-muted" style={{ fontSize: "0.9rem" }}>
                   Fiverr
                 </p>
-                <p
-                  className="text-secondary mb-1"
-                  style={{ fontSize: "0.85rem" }}
-                >
+                <p className="text-secondary mb-1" style={{ fontSize: "0.85rem" }}>
                   Jan 2022 – Present • 3 yrs 10 mos
                 </p>
                 <p className="mb-0" style={{ fontSize: "0.9rem" }}>
-                  Developed and maintained high-quality code following industry
-                  standards, improving performance and maintainability.
+                  Developed and maintained high-quality code following industry standards, improving performance and maintainability.
                 </p>
               </div>
             </div>
@@ -130,10 +111,7 @@ export default function ProfileMain() {
                 <p className="mb-0 text-muted" style={{ fontSize: "0.9rem" }}>
                   Associate’s Degree, Computer Software Engineering
                 </p>
-                <p
-                  className="text-secondary mb-0"
-                  style={{ fontSize: "0.85rem" }}
-                >
+                <p className="text-secondary mb-0" style={{ fontSize: "0.85rem" }}>
                   2021 – 2023
                 </p>
               </div>
@@ -147,8 +125,7 @@ export default function ProfileMain() {
             <SkillItem>
               <p className="fw-semibold mb-1">JavaScript</p>
               <p className="text-secondary mb-2" style={{ fontSize: "0.9rem" }}>
-                Strong understanding of ES6+, async programming, and modern
-                syntax.
+                Strong understanding of ES6+, async programming, and modern syntax.
               </p>
               <hr />
             </SkillItem>
@@ -156,8 +133,7 @@ export default function ProfileMain() {
             <SkillItem>
               <p className="fw-semibold mb-1">React.js</p>
               <p className="text-secondary mb-2" style={{ fontSize: "0.9rem" }}>
-                Experienced in building responsive UI components and state
-                management.
+                Experienced in building responsive UI components and state management.
               </p>
               <hr />
             </SkillItem>
