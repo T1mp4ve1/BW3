@@ -6,9 +6,7 @@ export default function Home() {
   const [profileData, setProfileData] = useState([]);
   const [experienceData, setExperienceData] = useState([]);
 
-  const API_KEY =
-    "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2OGY1ZjNhNzZkZmMyMDAwMTVkMzk4OGUiLCJpYXQiOjE3NjA5NDkxNTksImV4cCI6MTc2MjE1ODc1OX0.gqqN2lVthoiffLa3428v52flN37Ms2JA0gaRl5xAYf4";
-
+  const API_KEY = import.meta.env.VITE_MY_SECRET_KEY;
   // ===== FETCH PROFILE =====
   useEffect(() => {
     fetch("https://striveschool-api.herokuapp.com/api/profile/me", {
@@ -21,12 +19,9 @@ export default function Home() {
 
   // ===== FETCH EXPERIENCES =====
   useEffect(() => {
-    fetch(
-      "https://striveschool-api.herokuapp.com/api/profile/68f5f3a76dfc200015d3988e/experiences",
-      {
-        headers: { Authorization: `Bearer ${API_KEY}` },
-      }
-    )
+    fetch("https://striveschool-api.herokuapp.com/api/profile/68f5f3a76dfc200015d3988e/experiences", {
+      headers: { Authorization: `Bearer ${API_KEY}` },
+    })
       .then((res) => res.json())
       .then(setExperienceData)
       .catch((err) => console.error("Errore esperienze:", err));
@@ -63,24 +58,12 @@ export default function Home() {
               <h6 className="fw-semibold mb-1">Recent Experiences</h6>
               {experienceData.slice(0, 2).map((exp) => (
                 <div key={exp._id} className="d-flex align-items-center mb-2">
-                  <Image
-                    src={exp.image}
-                    width={32}
-                    height={32}
-                    roundedCircle
-                    className="me-2"
-                  />
+                  <Image src={exp.image} width={32} height={32} roundedCircle className="me-2" />
                   <div>
-                    <p
-                      className="fw-semibold mb-0"
-                      style={{ fontSize: "0.9rem" }}
-                    >
+                    <p className="fw-semibold mb-0" style={{ fontSize: "0.9rem" }}>
                       {exp.role}
                     </p>
-                    <p
-                      className="text-muted mb-0"
-                      style={{ fontSize: "0.8rem" }}
-                    >
+                    <p className="text-muted mb-0" style={{ fontSize: "0.8rem" }}>
                       {exp.company}
                     </p>
                   </div>
@@ -93,17 +76,8 @@ export default function Home() {
           <Feed>
             <PostBox>
               <div className="d-flex align-items-center mb-3">
-                <Image
-                  src={profile.image}
-                  width={48}
-                  height={48}
-                  roundedCircle
-                  className="me-2"
-                />
-                <Button
-                  className="rounded-pill flex-grow-1 text-start ps-3"
-                  variant="outline-secondary"
-                >
+                <Image src={profile.image} width={48} height={48} roundedCircle className="me-2" />
+                <Button className="rounded-pill flex-grow-1 text-start ps-3" variant="outline-secondary">
                   Start a post
                 </Button>
               </div>
@@ -122,9 +96,7 @@ export default function Home() {
                 fluid
                 className="rounded mt-2"
               />
-              <p className="mt-2 text-secondary small">
-                Explore the latest trends in Frontend & Backend Web Development.
-              </p>
+              <p className="mt-2 text-secondary small">Explore the latest trends in Frontend & Backend Web Development.</p>
             </Card>
           </Feed>
 
