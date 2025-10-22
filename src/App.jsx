@@ -5,7 +5,7 @@ import "bootstrap-icons/font/bootstrap-icons.css";
 import NavBarLinkIn from "./components/NavBarLinkIn";
 import { Col, Container, Row } from "react-bootstrap";
 import FooterLinkIn from "./components/FooterLinkIn";
-import ProfileMain from "./components/ProfileMain";
+import ProfileMain from "./components/pages/ProfileMain";
 import Asidex from "./components/Asidex";
 import HomeLinkIn from "./components/pages/HomeLinkIn";
 
