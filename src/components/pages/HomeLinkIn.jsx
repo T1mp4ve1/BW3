@@ -146,42 +146,54 @@ export default function Home() {
 
             {postsData.slice(-6).map((post) => (
               <Card key={post._id} className="mb-2 mt-3">
-                <div className="d-flex p-3 pb-0">
-                  <img
-                    src={post.user.image}
-                    style={{
-                      width: "45px",
-                      height: "45px",
-                    }}
-                    className="rounded-5 me-2"
-                  />
-                  <div className="mb-3">
-                    <h6 className="m-0">
-                      {post.user.name} {post.user.surname} <i className="bi bi-shield-check"></i>
-                    </h6>
-                    <p
-                      className="text-muted m-0"
+                <div className="d-flex justify-content-between  p-3">
+                  <div className="d-flex pb-0">
+                    <img
+                      src={post.user.image}
                       style={{
-                        fontSize: 13,
+                        width: "45px",
+                        height: "45px",
                       }}
-                    >
-                      {post.user.title}
-                    </p>
-                    <p
-                      className="text-muted m-0"
-                      style={{
-                        fontSize: 13,
-                      }}
-                    >
-                      {new Date(post.createdAt).toLocaleDateString("it-IT", {
-                        day: "2-digit",
-                        month: "short",
-                        year: "numeric",
-                        hour: "2-digit",
-                        minute: "2-digit",
-                      })}
-                    </p>
+                      className="rounded-5 me-2"
+                    />
+                    <div className="mb-3">
+                      <h6 className="m-0">
+                        {post.user.name} {post.user.surname} <i className="bi bi-shield-check"></i>
+                      </h6>
+                      <p
+                        className="text-muted m-0"
+                        style={{
+                          fontSize: 13,
+                        }}
+                      >
+                        {post.user.title}
+                      </p>
+                      <p
+                        className="text-muted m-0"
+                        style={{
+                          fontSize: 13,
+                        }}
+                      >
+                        {new Date(post.createdAt).toLocaleDateString("it-IT", {
+                          day: "2-digit",
+                          month: "short",
+                          year: "numeric",
+                          hour: "2-digit",
+                          minute: "2-digit",
+                        })}
+                      </p>
+                    </div>
                   </div>
+                  {profileData[0]._id === post.user._id && (
+                    <div>
+                      <Button variant="outline-warning" className="btn-sm me-2 rounded-pill border-0">
+                        Modifica
+                      </Button>
+                      <Button variant="outline-danger" className="btn-sm rounded-pill" onClick={() => handleDelete(post._id)}>
+                        <i className="bi bi-trash3"></i>
+                      </Button>
+                    </div>
+                  )}
                 </div>
                 <Card.Body className="py-0">
                   <p>{post.text}</p>
