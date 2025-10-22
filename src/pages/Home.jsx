@@ -1,25 +1,26 @@
 import { useState, useEffect } from "react";
-import { Card, Button, Image } from "react-bootstrap";
+import { Card, Button, Image, Form } from "react-bootstrap";
 import styled from "styled-components";
 
 export default function Home() {
   const [profileData, setProfileData] = useState([]);
   const [experienceData, setExperienceData] = useState([]);
+  const [postsData, setpostsData] = useState([]);
+  const [newPost, setNewPost] = useState("");
 
   const API_KEY = import.meta.env.VITE_MY_SECRET_KEY;
 
+  // ===== FETCH =====
   useEffect(() => {
+    // profile
     fetch("https://striveschool-api.herokuapp.com/api/profile/me", {
       headers: { Authorization: `Bearer ${API_KEY}` },
     })
       .then((res) => res.json())
       .then((data) => setProfileData([data]))
       .catch((err) => console.error("Errore profilo:", err));
-  }, []);
 
-  // ===== FETCH EXPERIENCES =====
-
-  useEffect(() => {
+    // experiemce
     fetch(
       "https://striveschool-api.herokuapp.com/api/profile/68f5f3a76dfc200015d3988e/experiences",
       {
@@ -29,7 +30,69 @@ export default function Home() {
       .then((res) => res.json())
       .then(setExperienceData)
       .catch((err) => console.error("Errore esperienze:", err));
+
+    //   posts
+    fetch("https://striveschool-api.herokuapp.com/api/posts/", {
+      headers: { Authorization: `Bearer ${API_KEY}` },
+    })
+      .then((res) => res.json())
+      .then(setpostsData)
+      .catch((err) => console.error("Errore posts:", err));
   }, []);
+
+  //   add post
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+
+    try {
+      const res = await fetch(
+        "https://striveschool-api.herokuapp.com/api/posts/",
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: `Bearer ${API_KEY}`,
+          },
+          body: JSON.stringify({
+            text: newPost,
+          }),
+        }
+      );
+
+      if (!res.ok) throw new Error("Errore nel post");
+
+      const postsRes = await fetch(
+        "https://striveschool-api.herokuapp.com/api/posts/",
+        {
+          headers: { Authorization: `Bearer ${API_KEY}` },
+        }
+      );
+      const updatedPosts = await postsRes.json();
+      setpostsData(updatedPosts);
+      setNewPost("");
+    } catch (err) {
+      console.log("Errore POST", err);
+    }
+  };
+
+  //   delete
+  const handleDelete = async (postId) => {
+    try {
+      setpostsData((prevPosts) => prevPosts.filter((p) => p._id !== postId));
+      const res = await fetch(
+        `https://striveschool-api.herokuapp.com/api/posts/${postId}`,
+        {
+          method: "DELETE",
+          headers: {
+            Authorization: `Bearer ${API_KEY}`,
+          },
+        }
+      );
+      if (!res.ok) throw new Error("ERRORE NEL DELETE");
+    } catch (error) {
+      console.error("ERRORE DELETE", error);
+    }
+  };
 
   return (
     <>
@@ -89,7 +152,7 @@ export default function Home() {
           </LeftSidebar>
 
           {/* ===== POSTS ===== */}
-          <Feed>
+          <div>
             <PostBox>
               <div className="d-flex align-items-center mb-3">
                 <Image
@@ -99,12 +162,16 @@ export default function Home() {
                   roundedCircle
                   className="me-2"
                 />
-                <Button
-                  className="rounded-pill flex-grow-1 text-start ps-3"
-                  variant="outline-secondary"
-                >
-                  Start a post
-                </Button>
+                <Form onSubmit={handleSubmit} className="w-100">
+                  <Form.Control
+                    className="rounded-pill flex-grow-1 text-start ps-3"
+                    variant="outline-secondary"
+                    type="text"
+                    placeholder="Inserisci il tuo post"
+                    value={newPost}
+                    onChange={(e) => setNewPost(e.target.value)}
+                  ></Form.Control>
+                </Form>
               </div>
               <div className="d-flex justify-content-around">
                 <Button variant="light">📸 Photo</Button>
@@ -113,19 +180,139 @@ export default function Home() {
               </div>
             </PostBox>
 
-            <Card className="p-3 mt-3">
-              <h6 className="fw-semibold">Suggested Post</h6>
-              <Image
-                src="https://cdn.dribbble.com/users/220238/screenshots/14020867/media/8cc2fa27cc70e7c4c8de8a2cc37b22f1.png"
-                alt="Post"
-                fluid
-                className="rounded mt-2"
-              />
-              <p className="mt-2 text-secondary small">
-                Explore the latest trends in Frontend & Backend Web Development.
-              </p>
-            </Card>
-          </Feed>
+            {postsData.slice(-6).map((post) => (
+              <Card key={post._id} className="mb-2 mt-3">
+                <div className="d-flex justify-content-between p-3">
+                  <div className="d-flex pb-0">
+                    <img
+                      src={post.user.image}
+                      style={{
+                        width: "45px",
+                        height: "45px",
+                      }}
+                      className="rounded-5 me-2"
+                    />
+                    <div>
+                      <h6 className="m-0">
+                        {post.user.name} {post.user.surname}{" "}
+                        <i className="bi bi-shield-check"></i>
+                      </h6>
+                      <p
+                        className="text-muted m-0"
+                        style={{
+                          fontSize: 13,
+                        }}
+                      >
+                        {post.user.title}
+                      </p>
+                      <p
+                        className="text-muted m-0"
+                        style={{
+                          fontSize: 13,
+                        }}
+                      >
+                        {new Date(post.createdAt).toLocaleDateString("it-IT", {
+                          day: "2-digit",
+                          month: "short",
+                          year: "numeric",
+                          hour: "2-digit",
+                          minute: "2-digit",
+                        })}
+                      </p>
+                    </div>
+                  </div>
+                  {profileData[0]._id === post.user._id && (
+                    <div>
+                      <Button
+                        variant="outline-light"
+                        className="btn-sm me-2 rounded-2 border-0"
+                      >
+                        <i className="bi bi-pencil text-dark"></i>
+                      </Button>
+                      <Button
+                        variant="outline-danger"
+                        className="btn-sm rounded-2 border-0"
+                        onClick={() => handleDelete(post._id)}
+                      >
+                        <i className="bi bi-trash3"></i>
+                      </Button>
+                    </div>
+                  )}
+                </div>
+                <Card.Body className="py-0">
+                  <p>{post.text}</p>
+                </Card.Body>
+                {post.image && (
+                  <div>
+                    <Card.Img src={post.image} alt="image" />
+                  </div>
+                )}
+
+                {/* buttons */}
+                <div className="d-flex justify-content-around border-top py-1">
+                  <Button
+                    variant="outline-light"
+                    className="d-flex border-0 align-items-center text-secondary"
+                  >
+                    <i className="bi bi-hand-thumbs-up fs-5"></i>
+                    <p
+                      className="mb-0 ms-1 fw-bold"
+                      style={{
+                        fontSize: 13,
+                      }}
+                    >
+                      Consiglia
+                    </p>
+                  </Button>
+                  <Button
+                    variant="outline-light"
+                    className="d-flex border-0 align-items-center text-secondary"
+                  >
+                    <i className="bi bi-chat-left-text fs-5"></i>
+                    <p
+                      className="mb-0 ms-1 fw-bold"
+                      style={{
+                        fontSize: 13,
+                      }}
+                    >
+                      Commenta
+                    </p>
+                  </Button>
+                  <Button
+                    variant="outline-light"
+                    className="d-flex border-0 align-items-center text-secondary"
+                  >
+                    <i className="bi bi-arrow-repeat fs-5"></i>
+                    <p
+                      className="mb-0 ms-1 fw-bold"
+                      style={{
+                        fontSize: 13,
+                      }}
+                    >
+                      Diffondi
+                    </p>
+                  </Button>
+                  <Button
+                    variant="outline-light"
+                    className="d-flex border-0 align-items-center text-secondary"
+                  >
+                    <i className="bi bi-send fs-5"></i>
+                    <p
+                      className="mb-0 ms-1 fw-bold"
+                      style={{
+                        fontSize: 13,
+                      }}
+                    >
+                      Invia
+                    </p>
+                  </Button>
+                </div>
+              </Card>
+            ))}
+            <p className="mt-2 text-secondary small">
+              Explore the latest trends in Frontend & Backend Web Development.
+            </p>
+          </div>
 
           {/* ===== RIGHT SIDEBAR ===== */}
           <RightSidebar>
@@ -150,35 +337,29 @@ export default function Home() {
 }
 
 /* ====== STYLED COMPONENTS ====== */
+
 const MainContainer = styled.div`
   display: grid;
   grid-template-columns: 1fr 2fr 1fr;
   gap: 18px;
-  max-width: 1000px; /* ⬅️ riduce la larghezza massima per allineare meglio le colonne */
+  max-width: 1200px;
   margin: 0 auto;
-  padding: 20px; /* ⬅️ meno spazio ai lati */
+  padding: 30px 40px;
   background-color: #f3f2ef;
   min-height: 100vh;
 
   @media (max-width: 1200px) {
     grid-template-columns: 260px 1fr;
-    max-width: 800px; /* ⬅️ centra bene anche a 2 colonne */
   }
 
   @media (max-width: 768px) {
     grid-template-columns: 1fr;
-    max-width: 600px; /* ⬅️ quando i post vanno sotto, stessa larghezza del profilo */
-    padding: 0 10px; /* ⬅️ toglie quasi tutto lo spazio grigio ai lati */
+    padding: 20px;
   }
 `;
 
 const LeftSidebar = styled.div`
   min-width: 260px;
-`;
-
-const Feed = styled.div`
-  max-width: 680px;
-  margin: 0 auto;
 `;
 
 const RightSidebar = styled.div`
