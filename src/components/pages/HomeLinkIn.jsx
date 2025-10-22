@@ -17,6 +17,7 @@ export default function Home() {
     })
       .then((res) => res.json())
       .then((data) => setProfileData([data]))
+
       .catch((err) => console.error("Errore profilo:", err));
 
     // experiemce
@@ -61,7 +62,20 @@ export default function Home() {
       console.log("Errore POST", err);
     }
   };
-
+  //delete
+  const handleDelete = async (postId) => {
+    try {
+      const res = await fetch(`https://striveschool-api.herokuapp.com/api/posts/${postId}`, {
+        method: "DELETE",
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      });
+      if (!res.ok) throw new Error("ERRORE NEL DELETE");
+    } catch (error) {
+      console.error("ERRORE DELETE", error);
+    }
+  };
   return (
     <>
       {profileData.map((profile) => (
