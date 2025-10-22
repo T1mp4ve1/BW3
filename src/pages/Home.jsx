@@ -38,7 +38,7 @@ export default function Home() {
       .then((res) => res.json())
       .then(setpostsData)
       .catch((err) => console.error("Errore posts:", err));
-  }, []);
+  }, [API_KEY]);
 
   //   add post
   const handleSubmit = async (e) => {
