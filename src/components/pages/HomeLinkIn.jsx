@@ -7,6 +7,8 @@ export default function Home() {
   const [experienceData, setExperienceData] = useState([]);
   const [postsData, setpostsData] = useState([]);
   const [newPost, setNewPost] = useState("");
+  const [editingPostId, setEditingPostId] = useState(null);
+  const [editingText, setEditingText] = useState("");
 
   const API_KEY = import.meta.env.VITE_MY_SECRET_KEY;
 
@@ -70,6 +72,37 @@ export default function Home() {
       const updatedPosts = await postsRes.json();
       setpostsData(updatedPosts);
       setNewPost("");
+    } catch (err) {
+      console.log("Errore POST", err);
+    }
+  };
+
+  //   modifica
+  const handleSubmitEdit = async (e, postId) => {
+    e.preventDefault();
+
+    try {
+      const res = await fetch(
+        `https://striveschool-api.herokuapp.com/api/posts/${postId}`,
+        {
+          method: "PUT",
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: `Bearer ${API_KEY}`,
+          },
+          body: JSON.stringify({
+            text: editingText,
+          }),
+        }
+      );
+
+      if (!res.ok) throw new Error("Errore nel update");
+
+      setpostsData((prev) =>
+        prev.map((p) => (p._id === postId ? { ...p, text: editingText } : p))
+      );
+      setEditingPostId(null);
+      setEditingText("");
     } catch (err) {
       console.log("Errore POST", err);
     }
@@ -226,6 +259,10 @@ export default function Home() {
                       <Button
                         variant="outline-light"
                         className="btn-sm me-2 rounded-2 border-0"
+                        onClick={() => {
+                          setEditingPostId(post._id);
+                          setEditingText(post.text);
+                        }}
                       >
                         <i className="bi bi-pencil text-dark"></i>
                       </Button>
@@ -240,7 +277,22 @@ export default function Home() {
                   )}
                 </div>
                 <Card.Body className="py-0">
-                  <p>{post.text}</p>
+                  {editingPostId === post._id ? (
+                    <Form
+                      onSubmit={(e) => handleSubmitEdit(e, post._id)}
+                      className="w-100 mb-3"
+                    >
+                      <Form.Control
+                        className="rounded-pill flex-grow-1 text-start ps-3"
+                        variant="outline-secondary"
+                        type="text"
+                        value={editingText}
+                        onChange={(e) => setEditingText(e.target.value)}
+                      ></Form.Control>
+                    </Form>
+                  ) : (
+                    <p>{post.text}</p>
+                  )}
                 </Card.Body>
                 {post.image && (
                   <div>
