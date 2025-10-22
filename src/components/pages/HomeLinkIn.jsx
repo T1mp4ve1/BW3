@@ -61,11 +61,36 @@ export default function Home() {
 
       if (!res.ok) throw new Error("Errore nel post");
 
-      const createdPost = await res.json();
-      setpostsData((prev) => [createdPost, ...prev]);
+      const postsRes = await fetch(
+        "https://striveschool-api.herokuapp.com/api/posts/",
+        {
+          headers: { Authorization: `Bearer ${API_KEY}` },
+        }
+      );
+      const updatedPosts = await postsRes.json();
+      setpostsData(updatedPosts);
       setNewPost("");
     } catch (err) {
       console.log("Errore POST", err);
+    }
+  };
+
+  //   delete
+  const handleDelete = async (postId) => {
+    try {
+      setpostsData((prevPosts) => prevPosts.filter((p) => p._id !== postId));
+      const res = await fetch(
+        `https://striveschool-api.herokuapp.com/api/posts/${postId}`,
+        {
+          method: "DELETE",
+          headers: {
+            Authorization: `Bearer ${API_KEY}`,
+          },
+        }
+      );
+      if (!res.ok) throw new Error("ERRORE NEL DELETE");
+    } catch (error) {
+      console.error("ERRORE DELETE", error);
     }
   };
 
@@ -157,7 +182,7 @@ export default function Home() {
 
             {postsData.slice(-6).map((post) => (
               <Card key={post._id} className="mb-2 mt-3">
-                <div className="d-flex justify-content-between  p-3">
+                <div className="d-flex justify-content-between p-3">
                   <div className="d-flex pb-0">
                     <img
                       src={post.user.image}
@@ -167,7 +192,7 @@ export default function Home() {
                       }}
                       className="rounded-5 me-2"
                     />
-                    <div className="mb-3">
+                    <div>
                       <h6 className="m-0">
                         {post.user.name} {post.user.surname}{" "}
                         <i className="bi bi-shield-check"></i>
@@ -199,7 +224,7 @@ export default function Home() {
                   {profileData[0]._id === post.user._id && (
                     <div>
                       <Button
-                        variant="outline-warning"
+                        variant="outline-light"
                         className="btn-sm me-2 rounded-2 border-0"
                       >
                         <i className="bi bi-pencil text-dark"></i>
@@ -207,6 +232,7 @@ export default function Home() {
                       <Button
                         variant="outline-danger"
                         className="btn-sm rounded-2 border-0"
+                        onClick={() => handleDelete(post._id)}
                       >
                         <i className="bi bi-trash3"></i>
                       </Button>
@@ -223,7 +249,7 @@ export default function Home() {
                 )}
 
                 {/* buttons */}
-                <div className="d-flex justify-content-around border-top pt-3">
+                <div className="d-flex justify-content-around border-top py-1">
                   <Button
                     variant="outline-light"
                     className="d-flex border-0 align-items-center text-secondary"
