@@ -8,8 +8,7 @@ export default function Home() {
   const [postsData, setpostsData] = useState([]);
   const [newPost, setNewPost] = useState("");
 
-  const API_KEY =
-    "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2OGY1ZTkyNDZkZmMyMDAwMTVkMzk4OGEiLCJpYXQiOjE3NjA5NDY0NjgsImV4cCI6MTc2MjE1NjA2OH0.vfTreQVrxZKrni-xT2m7ZyRkBXyqogwoRZAlwlxXckc";
+  const API_KEY = import.meta.env.VITE_MY_SECRET_KEY;
 
   // ===== FETCH =====
   useEffect(() => {
@@ -201,13 +200,13 @@ export default function Home() {
                     <div>
                       <Button
                         variant="outline-warning"
-                        className="btn-sm me-2 rounded-pill border-0"
+                        className="btn-sm me-2 rounded-2 border-0"
                       >
-                        Modifica
+                        <i className="bi bi-pencil text-dark"></i>
                       </Button>
                       <Button
                         variant="outline-danger"
-                        className="btn-sm rounded-pill"
+                        className="btn-sm rounded-2 border-0"
                       >
                         <i className="bi bi-trash3"></i>
                       </Button>
