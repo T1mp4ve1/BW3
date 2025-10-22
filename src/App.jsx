@@ -7,7 +7,7 @@ import { Col, Container, Row } from "react-bootstrap";
 import FooterLinkIn from "./components/FooterLinkIn";
 import ProfileMain from "./components/ProfileMain";
 import Asidex from "./components/Asidex";
-import HomeLinkIn from "./components/HomeLinkIn";
+import HomeLinkIn from "./components/pages/HomeLinkIn";
 
 function App() {
   return (
