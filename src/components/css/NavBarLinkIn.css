@@ -1,23 +1,62 @@
+/* NavBar */
 .w-90 {
   width: 90%;
 }
 
-.container a {
+.navBarContainer a {
   color: #666666;
   text-decoration: none;
   padding: 0;
   font-size: 0.8rem;
 }
 
-.container a:hover {
+.navBarContainer a:hover {
   color: #000000;
 }
 
-.container img {
+.navBarContainer img {
   width: 25px;
   height: 25px;
 }
 
-p {
+.navBarContainer p {
   margin: 0;
+}
+
+/* TU */
+.dropDownMenu a {
+  font-weight: 600;
+}
+
+.dropDownMenu a:hover {
+  text-decoration: underline;
+}
+
+/* AZIENDE */
+#aziendeCardLeft a {
+  font-weight: 600;
+  font-size: 1rem;
+  color: #000000;
+}
+#aziendeCardLeft a:hover {
+  text-decoration: underline;
+}
+
+.talent {
+  font-weight: 600;
+}
+
+#aziendeCardRight .p1 {
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: #000000;
+}
+#aziendeCardRight a:hover {
+  text-decoration: underline;
+}
+
+@media (max-width: 991px) {
+  .dropdown-toggle::after {
+    display: none !important;
+  }
 }

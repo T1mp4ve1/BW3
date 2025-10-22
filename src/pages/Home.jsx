@@ -6,10 +6,8 @@ export default function Home() {
   const [profileData, setProfileData] = useState([]);
   const [experienceData, setExperienceData] = useState([]);
 
-  const API_KEY =
-    "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2OGY1ZjNhNzZkZmMyMDAwMTVkMzk4OGUiLCJpYXQiOjE3NjA5NDkxNTksImV4cCI6MTc2MjE1ODc1OX0.gqqN2lVthoiffLa3428v52flN37Ms2JA0gaRl5xAYf4";
+  const API_KEY = import.meta.env.VITE_MY_SECRET_KEY;
 
-  // ===== FETCH PROFILE =====
   useEffect(() => {
     fetch("https://striveschool-api.herokuapp.com/api/profile/me", {
       headers: { Authorization: `Bearer ${API_KEY}` },
@@ -20,6 +18,7 @@ export default function Home() {
   }, []);
 
   // ===== FETCH EXPERIENCES =====
+
   useEffect(() => {
     fetch(
       "https://striveschool-api.herokuapp.com/api/profile/68f5f3a76dfc200015d3988e/experiences",
@@ -151,24 +150,25 @@ export default function Home() {
 }
 
 /* ====== STYLED COMPONENTS ====== */
-
 const MainContainer = styled.div`
   display: grid;
   grid-template-columns: 1fr 2fr 1fr;
   gap: 18px;
-  max-width: 1200px;
+  max-width: 1000px; /* ⬅️ riduce la larghezza massima per allineare meglio le colonne */
   margin: 0 auto;
-  padding: 30px 40px;
+  padding: 20px; /* ⬅️ meno spazio ai lati */
   background-color: #f3f2ef;
   min-height: 100vh;
 
   @media (max-width: 1200px) {
     grid-template-columns: 260px 1fr;
+    max-width: 800px; /* ⬅️ centra bene anche a 2 colonne */
   }
 
   @media (max-width: 768px) {
     grid-template-columns: 1fr;
-    padding: 20px;
+    max-width: 600px; /* ⬅️ quando i post vanno sotto, stessa larghezza del profilo */
+    padding: 0 10px; /* ⬅️ toglie quasi tutto lo spazio grigio ai lati */
   }
 `;
 
