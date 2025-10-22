@@ -41,6 +41,7 @@ export default function Home() {
       .catch((err) => console.error("Errore posts:", err));
   }, []);
 
+  //   add post
   const handleSubmit = async (e) => {
     e.preventDefault();
 
