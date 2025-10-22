@@ -25,17 +25,13 @@ const Asidex = () => {
   useEffect(() => {
     const fetchProfiles = async () => {
       try {
-        const token =
-          "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2OGY1ZTkyNDZkZmMyMDAwMTVkMzk4OGEiLCJpYXQiOjE3NjA5NDY0NjgsImV4cCI6MTc2MjE1NjA2OH0.vfTreQVrxZKrni-xT2m7ZyRkBXyqogwoRZAlwlxXckc";
-        const res = await fetch(
-          "https://striveschool-api.herokuapp.com/api/profile/",
-          {
-            headers: {
-              Authorization: `Bearer ${token}`,
-              "Content-Type": "application/json",
-            },
-          }
-        );
+        const token = import.meta.env.VITE_MY_SECRET_KEY;
+        const res = await fetch("https://striveschool-api.herokuapp.com/api/profile/", {
+          headers: {
+            Authorization: `Bearer ${token}`,
+            "Content-Type": "application/json",
+          },
+        });
         const data = await res.json();
         setPersoneConsigliate(data.slice(0, 5));
       } catch (error) {
@@ -58,22 +54,16 @@ const Asidex = () => {
           <h5>Profilo pubblico e URL</h5>
           <i className="bi bi-pencil fs-5 ms-4"></i>
         </div>
-        <p className="text-muted">
-          www.linkedin.com/in/pavel-timofeev-2bb5b938b
-        </p>
+        <p className="text-muted">www.linkedin.com/in/pavel-timofeev-2bb5b938b</p>
       </Card>
 
       <Card className="mb-3 p-2">
         <div className="d-flex align-items-center mb-2">
           <Globe className="me-2" />
-          <h5 className="m-0">
-            a sinistra sarà dobbiamo metterci un icona//Titolo annuncio
-          </h5>
+          <h5 className="m-0">a sinistra sarà dobbiamo metterci un icona//Titolo annuncio</h5>
         </div>
         <p>Dettagli dell'annuncio qui...</p>
-        <Button className="text-dark rounded-pill bg-white border-dark">
-          Segui
-        </Button>
+        <Button className="text-dark rounded-pill bg-white border-dark">Segui</Button>
       </Card>
 
       <Card className="mb-3 p-2">
@@ -90,9 +80,7 @@ const Asidex = () => {
               </div>
             </div>
             <div className="d-flex justify-content-center mt-1 mb-2">
-              <Button className="mt-1 mb-2 text-dark rounded-pill bg-white border-dark ">
-                Visualizza
-              </Button>
+              <Button className="mt-1 mb-2 text-dark rounded-pill bg-white border-dark ">Visualizza</Button>
             </div>
           </div>
         ))}
@@ -112,15 +100,11 @@ const Asidex = () => {
               </div>
             </div>
             <div className="d-flex justify-content-center mt-1 mb-2">
-              <Button className="mt-1 mb-2 text-dark rounded-pill bg-white border-dark">
-                Collegati
-              </Button>
+              <Button className="mt-1 mb-2 text-dark rounded-pill bg-white border-dark">Collegati</Button>
             </div>
           </div>
         ))}
-        <Button className="mt-2 text-dark rounded-pill bg-white border-dark">
-          Mostra tutto
-        </Button>
+        <Button className="mt-2 text-dark rounded-pill bg-white border-dark">Mostra tutto</Button>
       </Card>
 
       <Card className="p-2">
@@ -138,15 +122,11 @@ const Asidex = () => {
               </div>
             </div>
             <div className="d-flex justify-content-center mt-1 mb-2">
-              <Button className="mt-1 mb-2 text-dark rounded-pill bg-white border-dark">
-                Segui
-              </Button>
+              <Button className="mt-1 mb-2 text-dark rounded-pill bg-white border-dark">Segui</Button>
             </div>
           </div>
         ))}
-        <Button className="mt-2 text-dark rounded-pill bg-white border-dark">
-          Mostra tutto
-        </Button>
+        <Button className="mt-2 text-dark rounded-pill bg-white border-dark">Mostra tutto</Button>
       </Card>
     </aside>
   );

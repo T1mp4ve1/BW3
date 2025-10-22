@@ -8,33 +8,28 @@ export default function Home() {
   const [postsData, setpostsData] = useState([]);
   const [newPost, setNewPost] = useState("");
 
-  const API_KEY =
-    "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2OGY1ZTkyNDZkZmMyMDAwMTVkMzk4OGEiLCJpYXQiOjE3NjA5NDY0NjgsImV4cCI6MTc2MjE1NjA2OH0.vfTreQVrxZKrni-xT2m7ZyRkBXyqogwoRZAlwlxXckc";
-
+  const token = import.meta.env.VITE_MY_SECRET_KEY;
   // ===== FETCH =====
   useEffect(() => {
     // profile
     fetch("https://striveschool-api.herokuapp.com/api/profile/me", {
-      headers: { Authorization: `Bearer ${API_KEY}` },
+      headers: { Authorization: `Bearer ${token}` },
     })
       .then((res) => res.json())
       .then((data) => setProfileData([data]))
       .catch((err) => console.error("Errore profilo:", err));
 
     // experiemce
-    fetch(
-      "https://striveschool-api.herokuapp.com/api/profile/68f5f3a76dfc200015d3988e/experiences",
-      {
-        headers: { Authorization: `Bearer ${API_KEY}` },
-      }
-    )
+    fetch("https://striveschool-api.herokuapp.com/api/profile/68f5f3a76dfc200015d3988e/experiences", {
+      headers: { Authorization: `Bearer ${token}` },
+    })
       .then((res) => res.json())
       .then(setExperienceData)
       .catch((err) => console.error("Errore esperienze:", err));
 
     //   posts
     fetch("https://striveschool-api.herokuapp.com/api/posts/", {
-      headers: { Authorization: `Bearer ${API_KEY}` },
+      headers: { Authorization: `Bearer ${token}` },
     })
       .then((res) => res.json())
       .then(setpostsData)
@@ -46,19 +41,16 @@ export default function Home() {
     e.preventDefault();
 
     try {
-      const res = await fetch(
-        "https://striveschool-api.herokuapp.com/api/posts/",
-        {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-            Authorization: `Bearer ${API_KEY}`,
-          },
-          body: JSON.stringify({
-            text: newPost,
-          }),
-        }
-      );
+      const res = await fetch("https://striveschool-api.herokuapp.com/api/posts/", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${token}`,
+        },
+        body: JSON.stringify({
+          text: newPost,
+        }),
+      });
 
       if (!res.ok) throw new Error("Errore nel post");
 
@@ -101,24 +93,12 @@ export default function Home() {
               <h6 className="fw-semibold mb-1">Recent Experiences</h6>
               {experienceData.slice(0, 2).map((exp) => (
                 <div key={exp._id} className="d-flex align-items-center mb-2">
-                  <Image
-                    src={exp.image}
-                    width={32}
-                    height={32}
-                    roundedCircle
-                    className="me-2"
-                  />
+                  <Image src={exp.image} width={32} height={32} roundedCircle className="me-2" />
                   <div>
-                    <p
-                      className="fw-semibold mb-0"
-                      style={{ fontSize: "0.9rem" }}
-                    >
+                    <p className="fw-semibold mb-0" style={{ fontSize: "0.9rem" }}>
                       {exp.role}
                     </p>
-                    <p
-                      className="text-muted mb-0"
-                      style={{ fontSize: "0.8rem" }}
-                    >
+                    <p className="text-muted mb-0" style={{ fontSize: "0.8rem" }}>
                       {exp.company}
                     </p>
                   </div>
@@ -131,13 +111,7 @@ export default function Home() {
           <div>
             <PostBox>
               <div className="d-flex align-items-center mb-3">
-                <Image
-                  src={profile.image}
-                  width={48}
-                  height={48}
-                  roundedCircle
-                  className="me-2"
-                />
+                <Image src={profile.image} width={48} height={48} roundedCircle className="me-2" />
                 <Form onSubmit={handleSubmit} className="w-100">
                   <Form.Control
                     className="rounded-pill flex-grow-1 text-start ps-3"
@@ -169,8 +143,7 @@ export default function Home() {
                   />
                   <div className="mb-3">
                     <h6 className="m-0">
-                      {post.user.name} {post.user.surname}{" "}
-                      <i className="bi bi-shield-check"></i>
+                      {post.user.name} {post.user.surname} <i className="bi bi-shield-check"></i>
                     </h6>
                     <p
                       className="text-muted m-0"
@@ -207,10 +180,7 @@ export default function Home() {
 
                 {/* buttons */}
                 <div className="d-flex justify-content-around border-top pt-3">
-                  <Button
-                    variant="outline-light"
-                    className="d-flex border-0 align-items-center text-secondary"
-                  >
+                  <Button variant="outline-light" className="d-flex border-0 align-items-center text-secondary">
                     <i className="bi bi-hand-thumbs-up fs-5"></i>
                     <p
                       className="mb-0 ms-1 fw-bold"
@@ -221,10 +191,7 @@ export default function Home() {
                       Consiglia
                     </p>
                   </Button>
-                  <Button
-                    variant="outline-light"
-                    className="d-flex border-0 align-items-center text-secondary"
-                  >
+                  <Button variant="outline-light" className="d-flex border-0 align-items-center text-secondary">
                     <i className="bi bi-chat-left-text fs-5"></i>
                     <p
                       className="mb-0 ms-1 fw-bold"
@@ -235,10 +202,7 @@ export default function Home() {
                       Commenta
                     </p>
                   </Button>
-                  <Button
-                    variant="outline-light"
-                    className="d-flex border-0 align-items-center text-secondary"
-                  >
+                  <Button variant="outline-light" className="d-flex border-0 align-items-center text-secondary">
                     <i className="bi bi-arrow-repeat fs-5"></i>
                     <p
                       className="mb-0 ms-1 fw-bold"
@@ -249,10 +213,7 @@ export default function Home() {
                       Diffondi
                     </p>
                   </Button>
-                  <Button
-                    variant="outline-light"
-                    className="d-flex border-0 align-items-center text-secondary"
-                  >
+                  <Button variant="outline-light" className="d-flex border-0 align-items-center text-secondary">
                     <i className="bi bi-send fs-5"></i>
                     <p
                       className="mb-0 ms-1 fw-bold"
@@ -266,9 +227,7 @@ export default function Home() {
                 </div>
               </Card>
             ))}
-            <p className="mt-2 text-secondary small">
-              Explore the latest trends in Frontend & Backend Web Development.
-            </p>
+            <p className="mt-2 text-secondary small">Explore the latest trends in Frontend & Backend Web Development.</p>
           </div>
 
           {/* ===== RIGHT SIDEBAR ===== */}
