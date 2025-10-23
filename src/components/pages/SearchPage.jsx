@@ -1,6 +1,5 @@
 import { useState, useEffect } from "react";
 import { Badge, Card, Col, ListGroup, Row, Spinner } from "react-bootstrap";
-import { Link } from "react-router";
 import { useParams } from "react-router";
 import "../css/SearchPage.css";
 
@@ -9,6 +8,7 @@ export default function SearchPage() {
   const API_KEY = import.meta.env.VITE_MY_SECRET_KEY;
   const { query } = useParams();
   const [isLoading, setIsLoading] = useState(true);
+  const [isSelected, setIsSelected] = useState(null);
 
   useEffect(() => {
     setIsLoading(true);
@@ -19,7 +19,10 @@ export default function SearchPage() {
       }
     )
       .then((res) => res.json())
-      .then((dataRecived) => setsearchData(dataRecived.data))
+      .then((dataRecived) => {
+        setIsSelected(dataRecived.data[0]);
+        setsearchData(dataRecived.data);
+      })
       .catch((err) => console.error("Errore profilo:", err))
       .finally(() => setIsLoading(false));
   }, [query]);
@@ -43,14 +46,20 @@ export default function SearchPage() {
             <Card.Title> Offerte di lavoro</Card.Title>
             <ListGroup className="border-0">
               {searchData.map((company) => (
-                <Link
+                <div
                   key={company._id}
-                  to={"/"}
+                  onClick={() => setIsSelected(company)}
                   style={{
-                    textDecoration: "none",
+                    cursor: "pointer",
                   }}
                 >
-                  <ListGroup.Item className="border-0 border-bottom rounded-0">
+                  <ListGroup.Item
+                    className={`${
+                      company._id === isSelected._id
+                        ? "border-primary bg-light"
+                        : "border-white"
+                    } border-start border-0 border-2 rounded-0`}
+                  >
                     <div className="d-flex justify-content-between">
                       <h6>{company.title}</h6>
                       <Badge bg="light" className="ms-3">
@@ -97,7 +106,7 @@ export default function SearchPage() {
                       </p>
                     </div>
                   </ListGroup.Item>
-                </Link>
+                </div>
               ))}
             </ListGroup>
           </Card>
@@ -108,8 +117,10 @@ export default function SearchPage() {
             style={{ height: "88vh", overflowY: "auto" }}
           >
             <Card.Title>Dettagli</Card.Title>
-            <div
-              dangerouslySetInnerHTML={{ __html: searchData[1].description }}
+            <div className="descriptionContainer"
+              dangerouslySetInnerHTML={{
+                __html: isSelected ? isSelected.description : "",
+              }}
             />
           </Card>
         </Col>
