@@ -9,17 +9,24 @@ import {
   Col,
   Card,
 } from "react-bootstrap";
-import { Link } from "react-router";
+import { Link, useNavigate } from "react-router";
 import "./css/NavBarLinkIn.css";
-import imagePlaceHolder from "../assets/logo.png";
 import { useEffect, useState } from "react";
 
 const NavBarLinkIn = () => {
   const [profileData, setProfileData] = useState([]);
+  const [searchTerm, setSearchTerm] = useState("");
+  const navigate = useNavigate();
+
+  const handleSearch = (e) => {
+    e.preventDefault();
+    if (searchTerm.trim() !== "") {
+      navigate(`/search/${encodeURIComponent(searchTerm)}`);
+    }
+  };
 
   useEffect(() => {
-    const API_KEY =
-      "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2OGY1ZTkyNDZkZmMyMDAwMTVkMzk4OGEiLCJpYXQiOjE3NjA5NDY0NjgsImV4cCI6MTc2MjE1NjA2OH0.vfTreQVrxZKrni-xT2m7ZyRkBXyqogwoRZAlwlxXckc";
+    const API_KEY = import.meta.env.VITE_MY_SECRET_KEY;
     const url = "https://striveschool-api.herokuapp.com/api/profile/me";
 
     fetch(url, {
@@ -49,13 +56,19 @@ const NavBarLinkIn = () => {
                 <i className="bi bi-search fs-5"></i>
                 <p className="m-0 d-none d-lg-block">Cerca</p>
               </Link>
-              <Form className="position-relative me-5 d-none d-lg-block">
+
+              <Form
+                className="position-relative me-5 d-none d-lg-block"
+                onSubmit={handleSearch}
+              >
                 <i className="bi bi-search position-absolute top-50 start-0 translate-middle ms-4"></i>
                 <Form.Control
                   type="search"
                   placeholder="Cerca"
                   className="me-2 ps-5 py-1 pe-5 rounded-5 border-secondary"
                   aria-label="Search"
+                  value={searchTerm}
+                  onChange={(e) => setSearchTerm(e.target.value)}
                 />
               </Form>
             </div>
@@ -96,7 +109,7 @@ const NavBarLinkIn = () => {
                 <div>
                   <img
                     className="rounded-5"
-                    src={imagePlaceHolder}
+                    src={profileData.image}
                     alt="profileImage"
                   />
                 </div>

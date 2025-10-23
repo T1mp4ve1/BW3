@@ -8,6 +8,7 @@ import FooterLinkIn from "./components/FooterLinkIn";
 import ProfileMain from "./components/pages/ProfileMain";
 import Asidex from "./components/Asidex";
 import HomeLinkIn from "./components/pages/HomeLinkIn";
+import SearchPage from "./components/pages/SearchPage";
 
 function App() {
   return (
@@ -30,6 +31,7 @@ function App() {
                 </Row>
               }
             />
+            <Route path="/search/:query" element={<SearchPage />} />
           </Routes>
         </Container>
         <FooterLinkIn />
