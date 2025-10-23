@@ -15,7 +15,9 @@ function App() {
     <>
       <BrowserRouter>
         <NavBarLinkIn />
-        <Container className="d-flex justify-content-center mt-5">
+        <Container
+          className="d-flex justify-content-center mt-5"
+        >
           <Routes>
             <Route path="/" element={<HomeLinkIn />} />
             <Route
