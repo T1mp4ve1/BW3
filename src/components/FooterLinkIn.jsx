@@ -1,11 +1,4 @@
-import {
-  Container,
-  Navbar,
-  Row,
-  Col,
-  Dropdown,
-  DropdownButton,
-} from "react-bootstrap";
+import { Container, Navbar, Row, Col, Dropdown, DropdownButton } from "react-bootstrap";
 import "./css/FooterLinkIn.css";
 
 const FooterLinkIn = () => {
@@ -66,7 +59,7 @@ const FooterLinkIn = () => {
         </Col>
         <Col className="d-flex flex-column grateLinks">
           <div className="d-flex">
-            <i class="bi bi-question-circle-fill fs-4 text-dark me-2"></i>
+            <i className="bi bi-question-circle-fill fs-4 text-dark me-2"></i>
             <div>
               <a href="/" onClick={(e) => e.preventDefault()}>
                 Domande?
@@ -75,7 +68,7 @@ const FooterLinkIn = () => {
             </div>
           </div>
           <div className="d-flex">
-            <i class="bi bi-gear-fill fs-4 text-dark me-2"></i>
+            <i className="bi bi-gear-fill fs-4 text-dark me-2"></i>
             <div>
               <a href="/" onClick={(e) => e.preventDefault()}>
                 Gestisci il tuo account e la tua privacy
@@ -84,7 +77,7 @@ const FooterLinkIn = () => {
             </div>
           </div>
           <div className="d-flex">
-            <i class="bi bi-shield-shaded fs-4 text-dark me-2"></i>
+            <i className="bi bi-shield-shaded fs-4 text-dark me-2"></i>
             <div>
               <a href="/" onClick={(e) => e.preventDefault()}>
                 Trasparenza sui contenuti consigliati
@@ -95,11 +88,7 @@ const FooterLinkIn = () => {
         </Col>
         <Col className="d-flex flex-column">
           <p>Seleziona lingua</p>
-          <DropdownButton
-            className="bg-light rounded-3"
-            variant="outline-secondary"
-            title="Italiano (Italiano)"
-          >
+          <DropdownButton className="bg-light rounded-3" variant="outline-secondary" title="Italiano (Italiano)">
             <Dropdown.Item eventKey="1">English (Inglese)</Dropdown.Item>
             <Dropdown.Item eventKey="2">Russian (Русский)</Dropdown.Item>
             <Dropdown.Item eventKey="3" active>

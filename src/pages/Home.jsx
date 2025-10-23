@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import { Card, Button, Image } from "react-bootstrap";
 import styled from "styled-components";
+import TopAziende from "../components/TopAziende";
 
 export default function Home() {
   const [profileData, setProfileData] = useState([]);
@@ -29,6 +30,7 @@ export default function Home() {
 
   return (
     <>
+      <TopAziende />
       {profileData.map((profile) => (
         <MainContainer key={profile._id}>
           {/* ===== LEFT SIDEBAR ===== */}
