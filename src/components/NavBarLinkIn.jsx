@@ -33,7 +33,7 @@ const NavBarLinkIn = () => {
   }, []);
 
   return (
-    <Navbar expand="lg" className="bg-light py-1 border-bottom">
+    <Navbar expand="lg" className="bg-light py-1 border-bottom fixed-top">
       <Container className="d-flex justify-content-center align-content-center navBarContainer m-xs-0 m-lg-auto">
         <Row className="m-0 w-90">
           <Col

@@ -213,9 +213,9 @@ export default function Home() {
               </div>
             </PostBox>
 
-            {postsData.slice(-6).map((post) => (
+            {postsData.slice(-20).map((post) => (
               <Card key={post._id} className="mb-2 mt-3">
-                <div className="d-flex justify-content-between p-3">
+                <div className="d-flex justify-content-between p-3 pb-0">
                   <div className="d-flex pb-0">
                     <img
                       src={post.user.image}
@@ -254,8 +254,10 @@ export default function Home() {
                       </p>
                     </div>
                   </div>
+                </div>
+                <Card.Body className="py-0">
                   {profileData[0]._id === post.user._id && (
-                    <div>
+                    <div className="text-end">
                       <Button
                         variant="outline-light"
                         className="btn-sm me-2 rounded-2 border-0"
@@ -275,8 +277,6 @@ export default function Home() {
                       </Button>
                     </div>
                   )}
-                </div>
-                <Card.Body className="py-0">
                   {editingPostId === post._id ? (
                     <Form
                       onSubmit={(e) => handleSubmitEdit(e, post._id)}
