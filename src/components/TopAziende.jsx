@@ -12,9 +12,7 @@ const TopAziende = () => {
       fetchFatta = true;
 
       try {
-        const res = await fetch("https://strive-benchmark.herokuapp.com/api/jobs?company=Olla", {
-          headers: { "Cache-Control": "no-cache" },
-        });
+        const res = await fetch("https://strive-benchmark.herokuapp.com/api/jobs?company=Olla", {});
         if (!res.ok) throw new Error("Errore nella fetch di TopAziende");
 
         const data = await res.json();
