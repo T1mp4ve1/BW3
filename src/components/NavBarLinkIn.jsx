@@ -8,6 +8,7 @@ import {
   Row,
   Col,
   Card,
+  Dropdown,
 } from "react-bootstrap";
 import { Link, useNavigate } from "react-router";
 import "./css/NavBarLinkIn.css";
@@ -105,19 +106,36 @@ const NavBarLinkIn = () => {
               </Link>
 
               {/* dropdown Tu */}
-              <div className="d-flex flex-column align-items-center mx-1">
-                <div>
-                  <img
-                    className="rounded-5"
-                    src={profileData.image}
-                    alt="profileImage"
-                  />
-                </div>
-                <NavDropdown
-                  align={"end"}
-                  title={<span className="d-none d-lg-inline">Tu</span>}
-                  id="navbarScrollingDropdown"
+              <Dropdown className="d-flex flex-column align-items-center mx-1">
+                <Dropdown.Toggle
+                  variant="light"
+                  className="d-flex flex-column align-items-center justify-content-center border-0 bg-transparent p-0"
                 >
+                  <div className="d-flex flex-column">
+                    <img
+                      className="rounded-5"
+                      src={profileData.image}
+                      alt="profileImage"
+                    />
+                    <div className="d-none d-lg-flex text-muted">
+                      <p
+                        className="text-muted"
+                        style={{
+                          fontSize: 13,
+                        }}
+                      >
+                        Tu
+                      </p>
+                      <i
+                        className="bi bi-caret-down-fill"
+                        style={{
+                          fontSize: 12,
+                        }}
+                      ></i>
+                    </div>
+                  </div>
+                </Dropdown.Toggle>
+                <Dropdown.Menu align={"end"} id="navbarScrollingDropdown">
                   <div
                     className="p-3 dropDownMenu"
                     href="#action1"
@@ -225,23 +243,37 @@ const NavBarLinkIn = () => {
                       </a>
                     </div>
                   </div>
-                </NavDropdown>
-              </div>
-              <div className="d-flex flex-column align-items-center border-start">
-                <div
-                  style={{
-                    color: "#666666",
-                  }}
+                </Dropdown.Menu>
+              </Dropdown>
+
+              {/* aziende */}
+              <Dropdown className="d-flex flex-column align-items-center border-start">
+                <Dropdown.Toggle
+                  variant="light"
+                  className="d-flex flex-column align-items-center justify-content-center border-0 bg-transparent p-0"
                 >
-                  <i className="bi bi-grid-3x3-gap-fill fs-5"></i>
-                </div>
-                <NavDropdown
-                  align={"end"}
-                  title={
-                    <span className="d-none d-lg-inline">Per le aziende</span>
-                  }
-                  id="navbarScrollingDropdown"
-                >
+                  <div className="d-flex flex-column ms-4">
+                    <i className="bi bi-grid-3x3-gap-fill fs-5 text-muted"></i>
+                    <div className="d-none d-lg-flex text-muted">
+                      <p
+                        className="text-muted"
+                        style={{
+                          fontSize: 13,
+                        }}
+                      >
+                        Per le aziende
+                      </p>
+                      <i
+                        className="bi bi-caret-down-fill"
+                        style={{
+                          fontSize: 12,
+                        }}
+                      ></i>
+                    </div>
+                  </div>
+                </Dropdown.Toggle>
+
+                <Dropdown.Menu align={"end"} id="navbarScrollingDropdown">
                   <Card
                     className="d-flex flex-row justify-content-between p-4 border-0"
                     style={{
@@ -375,8 +407,8 @@ const NavBarLinkIn = () => {
                       </a>
                     </div>
                   </Card>
-                </NavDropdown>
-              </div>
+                </Dropdown.Menu>
+              </Dropdown>
             </Nav>
           </Col>
         </Row>

@@ -117,7 +117,8 @@ export default function SearchPage() {
             style={{ height: "88vh", overflowY: "auto" }}
           >
             <Card.Title>Dettagli</Card.Title>
-            <div className="descriptionContainer"
+            <div
+              className="descriptionContainer"
               dangerouslySetInnerHTML={{
                 __html: isSelected ? isSelected.description : "",
               }}

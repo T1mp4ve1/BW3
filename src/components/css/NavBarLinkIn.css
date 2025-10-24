@@ -32,14 +32,19 @@
     text-decoration: underline;
 }
 
+.dropdown-toggle::after {
+    display: none;
+}
+
 /* AZIENDE */
 #aziendeCardLeft a {
     font-weight: 600;
     font-size: 1rem;
     color: #000000;
 }
+
 #aziendeCardLeft a:hover {
-text-decoration: underline;
+    text-decoration: underline;
 }
 
 .talent {
@@ -51,8 +56,9 @@ text-decoration: underline;
     font-weight: 600;
     color: #000000;
 }
+
 #aziendeCardRight a:hover {
-text-decoration: underline;
+    text-decoration: underline;
 }
 
 @media (max-width: 991px) {

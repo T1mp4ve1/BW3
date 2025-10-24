@@ -7,6 +7,7 @@ export default function Home() {
   const [experienceData, setExperienceData] = useState([]);
   const [postsData, setpostsData] = useState([]);
   const [newPost, setNewPost] = useState("");
+  const [newImage, setNewImage] = useState(null);
   const [editingPostId, setEditingPostId] = useState(null);
   const [editingText, setEditingText] = useState("");
 
@@ -60,8 +61,23 @@ export default function Home() {
           }),
         }
       );
-
       if (!res.ok) throw new Error("Errore nel post");
+      const createdPost = await res.json();
+
+      if (newImage) {
+        const formData = new FormData();
+        formData.append("post", newImage);
+
+        const aploadImage = await fetch(
+          `https://striveschool-api.herokuapp.com/api/posts/${createdPost._id}`,
+          {
+            method: "POST",
+            headers: { Authorization: `Bearer ${API_KEY}` },
+            body: formData,
+          }
+        );
+        if (!aploadImage.ok) throw new Error("Errore nel post");
+      }
 
       const postsRes = await fetch(
         "https://striveschool-api.herokuapp.com/api/posts/",
@@ -72,6 +88,7 @@ export default function Home() {
       const updatedPosts = await postsRes.json();
       setpostsData(updatedPosts);
       setNewPost("");
+      setNewImage(null);
     } catch (err) {
       console.log("Errore POST", err);
     }
@@ -132,7 +149,7 @@ export default function Home() {
       {profileData.map((profile) => (
         <MainContainer key={profile._id}>
           {/* ===== LEFT SIDEBAR ===== */}
-          <LeftSidebar>
+          <LeftSidebar className="sticky-top">
             <ProfileCard>
               <Cover />
               <ProfileImage src={profile.image} alt="profile" />
@@ -204,13 +221,14 @@ export default function Home() {
                     value={newPost}
                     onChange={(e) => setNewPost(e.target.value)}
                   ></Form.Control>
+                  <Form.Control
+                    type="file"
+                    className="mt-2 rounded-pill"
+                    onChange={(e) => setNewImage(e.target.files[0])}
+                  />
                 </Form>
               </div>
-              <div className="d-flex justify-content-around">
-                <Button variant="light">📸 Photo</Button>
-                <Button variant="light">🎥 Video</Button>
-                <Button variant="light">📰 Write article</Button>
-              </div>
+              <div className="d-flex justify-content-around"></div>
             </PostBox>
 
             {postsData.slice(-20).map((post) => (
@@ -257,10 +275,10 @@ export default function Home() {
                 </div>
                 <Card.Body className="py-0">
                   {profileData[0]._id === post.user._id && (
-                    <div className="text-end">
+                    <div className="text-end border-bottom">
                       <Button
                         variant="outline-light"
-                        className="btn-sm me-2 rounded-2 border-0"
+                        className="btn-sm me-2 rounded-2 border-0 border-start border-top"
                         onClick={() => {
                           setEditingPostId(post._id);
                           setEditingText(post.text);
@@ -270,7 +288,7 @@ export default function Home() {
                       </Button>
                       <Button
                         variant="outline-danger"
-                        className="btn-sm rounded-2 border-0"
+                        className="btn-sm rounded-2 border-0 border-end border-top"
                         onClick={() => handleDelete(post._id)}
                       >
                         <i className="bi bi-trash3"></i>
@@ -296,7 +314,11 @@ export default function Home() {
                 </Card.Body>
                 {post.image && (
                   <div>
-                    <Card.Img src={post.image} alt="image" />
+                    <Card.Img
+                      src={post.image}
+                      alt="image"
+                      className="rounded-0"
+                    />
                   </div>
                 )}
 
