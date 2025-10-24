@@ -9,11 +9,15 @@ export default function Home() {
   const [postsData, setpostsData] = useState([]);
   const [newPost, setNewPost] = useState("");
 
+  const [newImage, setNewImage] = useState(null);
+  const [editingPostId, setEditingPostId] = useState(null);
+  const [editingText, setEditingText] = useState("");
+
   const API_KEY = import.meta.env.VITE_MY_SECRET_KEY;
 
   // ===== FETCH =====
   useEffect(() => {
-    // profile personale
+    // profile
     fetch("https://striveschool-api.herokuapp.com/api/profile/me", {
       headers: { Authorization: `Bearer ${API_KEY}` },
     })
@@ -67,8 +71,23 @@ export default function Home() {
           }),
         }
       );
-
       if (!res.ok) throw new Error("Errore nel post");
+      const createdPost = await res.json();
+
+      if (newImage) {
+        const formData = new FormData();
+        formData.append("post", newImage);
+
+        const aploadImage = await fetch(
+          `https://striveschool-api.herokuapp.com/api/posts/${createdPost._id}`,
+          {
+            method: "POST",
+            headers: { Authorization: `Bearer ${API_KEY}` },
+            body: formData,
+          }
+        );
+        if (!aploadImage.ok) throw new Error("Errore nel post");
+      }
 
       const postsRes = await fetch(
         "https://striveschool-api.herokuapp.com/api/posts/",
@@ -79,6 +98,38 @@ export default function Home() {
       const updatedPosts = await postsRes.json();
       setpostsData(updatedPosts);
       setNewPost("");
+      setNewImage(null);
+    } catch (err) {
+      console.log("Errore POST", err);
+    }
+  };
+
+  //   modifica
+  const handleSubmitEdit = async (e, postId) => {
+    e.preventDefault();
+
+    try {
+      const res = await fetch(
+        `https://striveschool-api.herokuapp.com/api/posts/${postId}`,
+        {
+          method: "PUT",
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: `Bearer ${API_KEY}`,
+          },
+          body: JSON.stringify({
+            text: editingText,
+          }),
+        }
+      );
+
+      if (!res.ok) throw new Error("Errore nel update");
+
+      setpostsData((prev) =>
+        prev.map((p) => (p._id === postId ? { ...p, text: editingText } : p))
+      );
+      setEditingPostId(null);
+      setEditingText("");
     } catch (err) {
       console.log("Errore POST", err);
     }
@@ -205,18 +256,19 @@ export default function Home() {
                     value={newPost}
                     onChange={(e) => setNewPost(e.target.value)}
                   ></Form.Control>
+                  <Form.Control
+                    type="file"
+                    className="mt-2 rounded-pill"
+                    onChange={(e) => setNewImage(e.target.files[0])}
+                  />
                 </Form>
               </div>
-              <div className="d-flex justify-content-around">
-                <Button variant="light">📸 Photo</Button>
-                <Button variant="light">🎥 Video</Button>
-                <Button variant="light">📰 Write article</Button>
-              </div>
+              <div className="d-flex justify-content-around"></div>
             </PostBox>
 
-            {postsData.slice(-6).map((post) => (
+            {postsData.slice(-20).map((post) => (
               <Card key={post._id} className="mb-2 mt-3">
-                <div className="d-flex justify-content-between p-3">
+                <div className="d-flex justify-content-between p-3 pb-0">
                   <div className="d-flex pb-0">
                     <img
                       src={post.user.image}
@@ -255,30 +307,53 @@ export default function Home() {
                       </p>
                     </div>
                   </div>
+                </div>
+                <Card.Body className="py-0">
                   {profileData[0]._id === post.user._id && (
-                    <div>
+                    <div className="text-end border-bottom">
                       <Button
                         variant="outline-light"
-                        className="btn-sm me-2 rounded-2 border-0"
+                        className="btn-sm me-2 rounded-2 border-0 border-start border-top"
+                        onClick={() => {
+                          setEditingPostId(post._id);
+                          setEditingText(post.text);
+                        }}
                       >
                         <i className="bi bi-pencil text-dark"></i>
                       </Button>
                       <Button
                         variant="outline-danger"
-                        className="btn-sm rounded-2 border-0"
+                        className="btn-sm rounded-2 border-0 border-end border-top"
                         onClick={() => handleDelete(post._id)}
                       >
                         <i className="bi bi-trash3"></i>
                       </Button>
                     </div>
                   )}
-                </div>
-                <Card.Body className="py-0">
-                  <p>{post.text}</p>
+                  {editingPostId === post._id ? (
+                    <Form
+                      onSubmit={(e) => handleSubmitEdit(e, post._id)}
+                      className="w-100 mb-3"
+                    >
+                      <Form.Control
+                        className="rounded-pill flex-grow-1 text-start ps-3"
+                        variant="outline-secondary"
+                        type="text"
+                        value={editingText}
+                        onChange={(e) => setEditingText(e.target.value)}
+                      ></Form.Control>
+                    </Form>
+                  ) : (
+                    <p>{post.text}</p>
+                  )}
                 </Card.Body>
                 {post.image && (
                   <div>
-                    <Card.Img src={post.image} alt="image" />
+                    <Card.Img
+                      src={post.image}
+                      alt="image"
+                      className="rounded-0"
+                    />
                   </div>
                 )}
 
