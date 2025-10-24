@@ -1,17 +1,23 @@
 import { Card, Button } from "react-bootstrap";
-import { Globe, People, Person } from "react-bootstrap-icons";
-import "../components/css/Asidex.css";
-import { Link } from "react-router-dom";
-import { useSelector } from "react-redux";
-
+import { Person } from "react-bootstrap-icons";
+// import "../components/css/Asidex.css";
+import { Link } from "react-router";
+import { useDispatch, useSelector } from "react-redux";
+import { useEffect } from "react";
+import { fetchProfiles } from "../redux/actions";
+//partire dalla dispatch dei componenti + ispezionare in browser tramite dev tools come arrivano nello store, perchè se arr metti ogg si rompe//
 const AsideProvaRedux = () => {
+  const dispatch = useDispatch();
   const personeConsigliate = useSelector((state) => state.personeConsigliate.value);
-  console.log(personeConsigliate);
+  useEffect(() => {
+    dispatch(fetchProfiles());
+    // console.log(personeConsigliate);
+  }, []);
   return (
     <aside className="fontSize mt-2">
       <Card className="mb-2 p-2">
         <h5>Persone che potresti conoscere</h5>
-        {personeConsigliate.slice(0, 2).map((p, idx) => (
+        {personeConsigliate.map((p, idx) => (
           <div key={idx} className="mb-2 border-bottom">
             <div className="d-flex align-items-center">
               <Link to={`/profile/${p._id}`} className="text-black d-flex" style={{ textDecoration: "none" }}>

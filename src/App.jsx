@@ -4,7 +4,7 @@ import NavBarLinkIn from "./components/NavBarLinkIn";
 import ProfiloUtenti from "./components/ProfiloUtenti";
 import Home from "./pages/Home";
 import Profile from "./pages/Profile";
-import { Routes, Route } from "react-router-dom";
+import { Routes, Route } from "react-router";
 
 export default function App() {
   return (

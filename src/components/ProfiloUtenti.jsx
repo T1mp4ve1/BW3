@@ -1,15 +1,15 @@
 import { useState, useEffect } from "react";
 import { Card, Button, Image } from "react-bootstrap";
-import { useParams } from "react-router-dom";
+import { useParams } from "react-router";
 import styled from "styled-components";
 
 export default function ProfiloUtenti() {
   const [profileData, setProfileData] = useState([]);
   const [experienceData, setExperienceData] = useState([]);
-  const id = useParams();
+  const params = useParams(); //useparams torna oggetto come props
   useEffect(() => {
     const API_KEY = import.meta.env.VITE_MY_SECRET_KEY;
-    const url = `https://striveschool-api.herokuapp.com/api/profile/${id.userId}`;
+    const url = `https://striveschool-api.herokuapp.com/api/profile/${params.userId}`;
 
     fetch(url, {
       headers: {
@@ -23,7 +23,7 @@ export default function ProfiloUtenti() {
 
   useEffect(() => {
     const API_KEY = import.meta.env.VITE_MY_SECRET_KEY;
-    const url = `https://striveschool-api.herokuapp.com/api/profile/${id.userId}/experiences`;
+    const url = `https://striveschool-api.herokuapp.com/api/profile/${params.userId}/experiences`;
 
     fetch(url, {
       headers: {

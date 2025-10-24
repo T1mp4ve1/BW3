@@ -8,7 +8,7 @@ const personeConsigliateReducer = (state = initialState, action) => {
     case SET_PERSONECONSIGLIATE_RESULTS:
       return {
         ...state,
-        personeConsigliate: action.payload.value,
+        value: action.payload,
       };
     default:
       return state;

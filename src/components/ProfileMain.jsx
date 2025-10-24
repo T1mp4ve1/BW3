@@ -92,7 +92,7 @@ export default function ProfileMain() {
                     {exp.company}
                   </p>
                   <p className="text-secondary mb-1" style={{ fontSize: "0.85rem" }}>
-                    {exp.startDate} | {exp.endDate}
+                    {new Date(exp.startDate).toLocaleDateString()} | {new Date(exp.endDate).toLocaleDateString()}
                   </p>
                   <p className="mb-0" style={{ fontSize: "0.9rem" }}>
                     {exp.description}
