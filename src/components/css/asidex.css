@@ -1,8 +1,100 @@
-* {
-  font-family: "Lucida Sans", "Lucida Sans Regular", "Lucida Grande",
-    "Lucida Sans Unicode", Geneva, Verdana, sans-serif;
+.asidex-container {
+  font-family: "Segoe UI", sans-serif;
+  max-width: auto;
 }
 
-.fontSize {
-  font-size: 15px !important;
+.asidex-card {
+  border: none;
+  border-radius: 12px;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.08);
+  padding: 16px;
+  margin-bottom: 1rem;
+  background-color: #fff;
+}
+
+.asidex-title {
+  font-weight: 600;
+  color: #0a66c2;
+}
+
+.asidex-text {
+  color: #444;
+  font-size: 0.95rem;
+  margin-bottom: 0.5rem;
+}
+
+.asidex-subtext {
+  color: #777;
+  font-size: 0.85rem;
+  margin-bottom: 0.25rem;
+}
+
+.asidex-icon-title {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 8px;
+}
+
+.asidex-icon {
+  color: #0a66c2;
+}
+
+.asidex-item {
+  border-bottom: 1px solid #eee;
+  padding-bottom: 10px;
+  margin-bottom: 12px;
+}
+
+.asidex-item-content {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.asidex-item-name {
+  font-weight: 500;
+  margin-bottom: 0;
+  color: #000;
+}
+
+.asidex-btn {
+  background-color: #fff !important;
+  color: #444 !important;
+  border: 1px solid #ccc !important;
+  border-radius: 20px !important;
+  font-weight: 500 !important;
+  font-size: 0.85rem !important;
+  width: 100%;
+  margin-top: 8px;
+}
+
+.asidex-btn:hover {
+  background-color: #f3f2ef !important;
+}
+
+.asidex-btn-secondary {
+  background-color: #fff !important;
+  border: 1px solid #ddd !important;
+  color: #333 !important;
+  font-weight: 600 !important;
+  border-radius: 20px !important;
+  width: 100%;
+  margin-top: 8px;
+}
+.asidex-link {
+  text-decoration: none !important;
+  color: inherit !important;
+  transition: color 0.2s ease;
+}
+
+.asidex-link:hover,
+.asidex-link:focus {
+  color: #0a66c2 !important;
+  text-decoration: underline !important;
+}
+
+.asidex-link:hover h6,
+.asidex-link:hover p {
+  color: #0a66c2 !important;
 }

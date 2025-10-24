@@ -25,7 +25,7 @@ export default function JobLists() {
 
   return (
     <>
-      <h4 className="mb-3 fw-bold">More jobs for you</h4>
+      <h4 className="mb-3 fw-bold">Lavori che ti potrebbero interessare</h4>
 
       {loading ? (
         <div className="text-center mt-5">

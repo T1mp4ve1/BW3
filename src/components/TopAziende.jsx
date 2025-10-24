@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { Card, Container } from "react-bootstrap";
+import { Card } from "react-bootstrap";
 import "./css/TopAziende.css";
 
 const TopAziende = () => {
@@ -14,8 +14,7 @@ const TopAziende = () => {
 
       try {
         const res = await fetch(
-          "https://strive-benchmark.herokuapp.com/api/jobs?company=Olla",
-          {}
+          "https://strive-benchmark.herokuapp.com/api/jobs?company=Olla"
         );
         if (!res.ok) throw new Error("Errore nella fetch di TopAziende");
 
@@ -29,18 +28,29 @@ const TopAziende = () => {
     fetchTopAziende();
   }, []);
 
-  console.log(datiAziende);
-
   return (
-    <Container className="mt-4 pt-1">
+    <div className="job-section mt-4 pt-1">
       <h3>Le principali offerte di lavoro per te</h3>
       {datiAziende.length > 0 ? (
         datiAziende.map((azienda, idx) => {
           if (idx === 2) return null;
           return (
-            <Card key={azienda._id} className="mb-3 p-3">
-              <h3>{azienda.company_name}</h3>
-              <h4>{azienda.title}</h4>
+            <Card
+              key={azienda._id}
+              className="job-card mb-3 p-3"
+              onClick={() => window.open(azienda.url, "_blank")}
+              style={{ cursor: "pointer" }}
+            >
+              <a
+                href={azienda.url}
+                target="_blank"
+                rel="noreferrer"
+                className="job-link"
+              >
+                <h3>{azienda.company_name}</h3>
+                <h4>{azienda.title}</h4>
+              </a>
+
               <div
                 dangerouslySetInnerHTML={{
                   __html: azienda.description.slice(0, 100) + "...",
@@ -52,7 +62,7 @@ const TopAziende = () => {
       ) : (
         <p>Caricamento degli annunci di lavoro...</p>
       )}
-    </Container>
+    </div>
   );
 };
 

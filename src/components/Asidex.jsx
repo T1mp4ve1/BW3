@@ -1,8 +1,8 @@
 import { useEffect, useState } from "react";
 import { Card, Button } from "react-bootstrap";
 import { Globe, People, Person } from "react-bootstrap-icons";
-import "../components/css/Asidex.css";
 import { Link } from "react-router-dom";
+import "../components/css/Asidex.css";
 
 const Asidex = () => {
   const [personeConsigliate, setPersoneConsigliate] = useState([]);
@@ -10,18 +10,11 @@ const Asidex = () => {
   const aziendeConsigliate = [
     { name: "Azienda1", descrizione: "Servizi digitali", followers: "12k" },
     { name: "Azienda2", descrizione: "Consulenza IT", followers: "8k" },
-    { name: "Azienda3", descrizione: "Marketing online", followers: "20k" },
-    { name: "Azienda4", descrizione: "Formazione tech", followers: "15k" },
-    { name: "Azienda5", descrizione: "E-commerce solutions", followers: "9k" },
-    { name: "Azienda6", descrizione: "Servizi cloud", followers: "5k" },
   ];
+
   const companies = [
-    { name: "Azienda A", descizione: "la descrizione" },
-    { name: "Azienda A", descizione: "la descrizione" },
-    { name: "Azienda B", descizione: "la descrizione" },
-    { name: "Azienda C", descizione: "la descrizione" },
-    { name: "Azienda D", descizione: "la descrizione" },
-    { name: "Azienda E", descizione: "la descrizione" },
+    { name: "Azienda A", descrizione: "Settore tecnologico" },
+    { name: "Azienda B", descrizione: "Consulenza software" },
   ];
 
   useEffect(() => {
@@ -38,7 +31,7 @@ const Asidex = () => {
           }
         );
         const data = await res.json();
-        setPersoneConsigliate(data.slice(0, 5));
+        setPersoneConsigliate(data.slice(0, 3));
       } catch (error) {
         console.error("Errore nel fetch:", error);
       }
@@ -47,103 +40,88 @@ const Asidex = () => {
   }, []);
 
   return (
-    <aside className="fontSize mt-2">
-      <Card className="mb-2 p-2 ">
-        <h5 className="mb-2">Lingua del profilo</h5>
-        <p>Italiano</p>
+    <aside className="asidex-container mt-2">
+      {/* ====== LINGUA E URL ====== */}
+      <Card className="asidex-card">
+        <h5 className="asidex-title">Lingua del profilo</h5>
+        <p className="asidex-text">Italiano</p>
         <hr />
-        <h5>Profilo pubblico e URL</h5>
-        <p>www.linkcausale.com</p>
+        <h5 className="asidex-title">Profilo pubblico e URL</h5>
+        <p className="asidex-text">www.linkcausale.com</p>
       </Card>
 
-      <Card className="mb-2 p-2">
-        <div className="d-flex align-items-center mb-2">
-          <Globe className="me-2" />
-          <h5 className="m-0">
-            a sinistra sarà dobbiamo metterci un icona//Titolo annuncio
-          </h5>
+      {/* ====== ANNUNCIO ====== */}
+      <Card className="asidex-card">
+        <div className="asidex-icon-title">
+          <Globe className="asidex-icon" />
+          <h5 className="asidex-title mb-0">Annuncio di lavoro</h5>
         </div>
-        <p>Dettagli dell'annuncio qui...</p>
-        <Button className="text-dark rounded-pill bg-white border-dark">
-          Segui
-        </Button>
+        <p className="asidex-text">Dettagli dell'annuncio qui...</p>
+        <Button className="asidex-btn">Visualizza</Button>
       </Card>
 
-      <Card className="mb-2 p-2">
-        <h5>Altri profili consultati</h5>
-        <p>Solo per te</p>
-        {companies.slice(0, 2).map((p, idx) => (
-          <div key={idx} className="mb-2 border-bottom">
-            <div className="d-flex align-items-center">
-              <Person className="me-2" size={32} />
+      {/* ====== AZIENDE ====== */}
+      <Card className="asidex-card">
+        <h5 className="asidex-title">Profili visualizzati</h5>
+        <p className="asidex-subtext">Solo per te</p>
+        {companies.map((p, idx) => (
+          <div key={idx} className="asidex-item">
+            <div className="asidex-item-content">
+              <Person className="asidex-icon" size={30} />
               <div>
-                <h5 className="m-0">
-                  {p.name} {p.descrizione} — {""}
-                </h5>
+                <h6 className="asidex-item-name">{p.name}</h6>
+                <p className="asidex-subtext">{p.descrizione}</p>
               </div>
             </div>
-            <div className="d-flex justify-content-center mt-1 mb-2">
-              <Button className="mt-1 mb-2 text-dark rounded-pill bg-white border-dark ">
-                Visualizza
-              </Button>
-            </div>
+            <Button className="asidex-btn">Visualizza</Button>
           </div>
         ))}
       </Card>
 
-      <Card className="mb-2 p-2">
-        <h5>Persone che potresti conoscere</h5>
-        {personeConsigliate.slice(0, 2).map((p, idx) => (
-          <div key={idx} className="mb-2 border-bottom">
-            <div className="d-flex align-items-center">
-              <Link to={`/profile/${p._id}`}>
-                <Person className="me-2" size={32} />
-                <div>
-                  <h5 className="m-0">
-                    {p.name} {p.surname}
-                  </h5>
-                  <p className="m-0">{p.title}</p>
-                </div>
-              </Link>
-            </div>
-            <div className="d-flex justify-content-center mt-1 mb-2">
-              <Button className="mt-1 mb-2 text-dark rounded-pill bg-white border-dark">
-                Collegati
-              </Button>
-            </div>
-          </div>
-        ))}
-        <Button className="mt-2 text-dark rounded-pill bg-white border-dark">
-          Mostra tutto
-        </Button>
-      </Card>
-
-      <Card className="p-2">
-        <h5>Potrebbe interessarti</h5>
-        <p>Pagine per te</p>
-        {aziendeConsigliate.slice(0, 2).map((a, idx) => (
-          <div key={idx} className="mb-2 border-bottom">
-            <div className="d-flex align-items-center">
-              {/* people è un icona come globe */}
-              <People className="me-2" size={32} />
+      {/* ====== PERSONE ====== */}
+      <Card className="asidex-card">
+        <h5 className="asidex-title">Persone che potresti conoscere</h5>
+        {personeConsigliate.map((p, idx) => (
+          <div key={idx} className="asidex-item">
+            <Link
+              to={`/profile/${p._id}`}
+              className="asidex-link d-flex align-items-center"
+            >
+              <Person className="asidex-icon" size={30} />
               <div>
-                <h5 className="m-0">{a.name}</h5>
-                <p className="m-0">{a.descrizione}</p>
-                <p className="m-0">{a.followers} follower</p>
+                <h6 className="asidex-item-name">
+                  {p.name} {p.surname}
+                </h6>
+                <p className="asidex-subtext">{p.title}</p>
+              </div>
+            </Link>
+            <Button className="asidex-btn">Collegati</Button>
+          </div>
+        ))}
+        <Button className="asidex-btn-secondary">Mostra tutto</Button>
+      </Card>
+
+      {/* ====== POTREBBE INTERESSARTI ====== */}
+      <Card className="asidex-card">
+        <h5 className="asidex-title">Potrebbe interessarti</h5>
+        <p className="asidex-subtext">Pagine per te</p>
+        {aziendeConsigliate.map((a, idx) => (
+          <div key={idx} className="asidex-item">
+            <div className="asidex-item-content">
+              <People className="asidex-icon" size={30} />
+              <div>
+                <h6 className="asidex-item-name">{a.name}</h6>
+                <p className="asidex-subtext">{a.descrizione}</p>
+                <p className="asidex-subtext">{a.followers} follower</p>
               </div>
             </div>
-            <div className="d-flex justify-content-center mt-1 mb-2">
-              <Button className="mt-1 mb-2 text-dark rounded-pill bg-white border-dark">
-                Segui
-              </Button>
-            </div>
+            <Button className="asidex-btn">Segui</Button>
           </div>
         ))}
-        <Button className="mt-2 text-dark rounded-pill bg-white border-dark">
-          Mostra tutto
-        </Button>
+        <Button className="asidex-btn-secondary">Mostra tutto</Button>
       </Card>
     </aside>
   );
 };
+
 export default Asidex;
