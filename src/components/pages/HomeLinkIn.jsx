@@ -172,32 +172,27 @@ export default function Home() {
             </ProfileCard>
 
             <MiniCard>
-              <h6 className="fw-semibold mb-1">Recent Experiences</h6>
-              {experienceData.slice(0, 2).map((exp) => (
-                <div key={exp._id} className="d-flex align-items-center mb-2">
-                  <Image
-                    src={exp.image}
-                    width={32}
-                    height={32}
-                    roundedCircle
-                    className="me-2"
-                  />
-                  <div>
-                    <p
-                      className="fw-semibold mb-0"
-                      style={{ fontSize: "0.9rem" }}
-                    >
-                      {exp.role}
-                    </p>
-                    <p
-                      className="text-muted mb-0"
-                      style={{ fontSize: "0.8rem" }}
-                    >
-                      {exp.company}
-                    </p>
-                  </div>
+              <div className="d-flex flex-column gap-3">
+                <div className="d-flex align-items-center">
+                  <i className="bi bi-bookmark-fill me-2 fs-5"></i>
+                  <span className="small fw-semibold">Elementi salvati</span>
                 </div>
-              ))}
+
+                <div className="d-flex align-items-center">
+                  <i className="bi bi-people-fill me-2 fs-5"></i>
+                  <span className="small fw-semibold">Gruppi</span>
+                </div>
+
+                <div className="d-flex align-items-center">
+                  <i className="bi bi-newspaper me-2 fs-5"></i>
+                  <span className="small fw-semibold">Newsletter</span>
+                </div>
+
+                <div className="d-flex align-items-center">
+                  <i className="bi bi-calendar-event-fill me-2 fs-5"></i>
+                  <span className="small fw-semibold">Eventi</span>
+                </div>
+              </div>
             </MiniCard>
           </LeftSidebar>
 
