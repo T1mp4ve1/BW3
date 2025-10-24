@@ -398,6 +398,55 @@ export default function Home() {
               <p className="small mb-0">🟧 Zip Path</p>
               <p className="small mb-0">🔷 Tango Grid</p>
             </MiniCard>
+
+            <MiniCard className="p-3 bg-white border rounded shadow-sm">
+              <h6 className="fw-semibold mb-3">Add to your feed</h6>
+
+              {allProfiles.slice(-4).map((profile) => (
+                <div
+                  key={profile._id}
+                  className="d-flex flex-column align-items-start mb-3"
+                >
+                  {/* ==== Sezione immagine + testo ==== */}
+                  <div className="d-flex align-items-center w-100 mb-1">
+                    <img
+                      src={profile.image}
+                      alt={`${profile.name} ${profile.surname}`}
+                      className="rounded-circle me-2"
+                      style={{
+                        width: "40px",
+                        height: "40px",
+                        objectFit: "cover",
+                      }}
+                    />
+                    <div>
+                      <p className="mb-0 fw-semibold text-capitalize small">
+                        {profile.name} {profile.surname}
+                      </p>
+                      <p className="mb-0 text-secondary small">
+                        {profile.title || "profession not specified"}
+                      </p>
+                    </div>
+                  </div>
+
+                  {/* ==== Bottone follow ==== */}
+                  <Button
+                    variant="outline-secondary"
+                    size="sm"
+                    className="rounded-pill fw-semibold px-3 ms-5"
+                  >
+                    + Follow
+                  </Button>
+                </div>
+              ))}
+
+              <a
+                href="#"
+                className="d-block text-center text-decoration-none mt-2 small fw-semibold"
+              >
+                View all recommendations →
+              </a>
+            </MiniCard>
           </RightSidebar>
         </MainContainer>
       ))}
