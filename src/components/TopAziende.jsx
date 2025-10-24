@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { Card, Container } from "react-bootstrap";
-// import "./css/TopAziende.css";
+import "./css/TopAziende.css";
 const TopAziende = () => {
   const [datiAziende, setDatiAziende] = useState([]);
 
@@ -31,13 +31,19 @@ const TopAziende = () => {
   console.log(datiAziende);
 
   return (
-    <>
+    <div className="custom-container">
       <h3>Le principali offerte di lavoro per te</h3>
       {datiAziende.length > 0 ? (
         datiAziende.map((azienda, idx) => {
           if (idx === 2) return null;
           return (
-            <Card key={azienda._id} className="mb-3 p-3">
+            <Card
+              style={{
+                cursor: "pointer",
+              }}
+              key={azienda._id}
+              className="mb-3 p-3"
+            >
               <h3>{azienda.company_name}</h3>
               <h4>{azienda.title}</h4>
               <div
@@ -51,7 +57,7 @@ const TopAziende = () => {
       ) : (
         <p>Caricamento degli annunci di lavoro...</p>
       )}
-    </>
+    </div>
   );
 };
 

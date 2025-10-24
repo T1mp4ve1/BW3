@@ -37,7 +37,7 @@ export default function LeftSideJobs() {
   return (
     <>
       {profileData.map((profile) => (
-        <MainContainer key={profile._id}>
+        <div key={profile._id}>
           <LeftSidebar>
             <ProfileCard>
               <Cover />
@@ -95,33 +95,13 @@ export default function LeftSideJobs() {
               </div>
             </MiniCard>
           </LeftSidebar>
-        </MainContainer>
+        </div>
       ))}
     </>
   );
 }
 
 /* ====== STYLED COMPONENTS ====== */
-
-const MainContainer = styled.div`
-  display: grid;
-  grid-template-columns: 1fr 2fr 1fr;
-  gap: 18px;
-  max-width: 1200px;
-  margin: 0 auto;
-  padding: 30px 40px;
-  background-color: #f3f2ef;
-  min-height: 100vh;
-
-  @media (max-width: 1200px) {
-    grid-template-columns: 260px 1fr;
-  }
-
-  @media (max-width: 768px) {
-    grid-template-columns: 1fr;
-    padding: 20px;
-  }
-`;
 
 const LeftSidebar = styled.div`
   min-width: 260px;
