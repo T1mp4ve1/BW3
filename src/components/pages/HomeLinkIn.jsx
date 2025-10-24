@@ -242,202 +242,207 @@ export default function Home() {
               <div className="d-flex justify-content-around"></div>
             </PostBox>
 
-            {postsData.slice(-20).map((post) => {
-              const commentsPost = allComments.filter(
-                (comment) => comment.elementId === post._id
-              );
-              return (
-                <Card key={post._id} className="mb-2 mt-3">
-                  <div className="d-flex justify-content-between p-3 pb-0">
-                    <div className="d-flex pb-0">
-                      <img
-                        src={post.user.image}
-                        style={{
-                          width: "45px",
-                          height: "45px",
-                        }}
-                        className="rounded-5 me-2"
-                      />
+            {postsData
+              .slice(-20)
+              .reverse()
+              .map((post) => {
+                const commentsPost = allComments.filter(
+                  (comment) => comment.elementId === post._id
+                );
+                return (
+                  <Card key={post._id} className="mb-2 mt-3">
+                    <div className="d-flex justify-content-between p-3 pb-0">
+                      <div className="d-flex pb-0">
+                        <img
+                          src={post.user.image}
+                          style={{
+                            width: "45px",
+                            height: "45px",
+                          }}
+                          className="rounded-5 me-2"
+                        />
+                        <div>
+                          <h6 className="m-0">
+                            {post.user.name} {post.user.surname}{" "}
+                            <i className="bi bi-shield-check"></i>
+                          </h6>
+                          <p
+                            className="text-muted m-0"
+                            style={{
+                              fontSize: 13,
+                            }}
+                          >
+                            {post.user.title}
+                          </p>
+
+                          <p
+                            className="text-muted m-0"
+                            style={{
+                              fontSize: 13,
+                            }}
+                          >
+                            {new Date(post.createdAt).toLocaleDateString(
+                              "it-IT",
+                              {
+                                day: "2-digit",
+                                month: "short",
+                                year: "numeric",
+                                hour: "2-digit",
+                                minute: "2-digit",
+                              }
+                            )}
+                          </p>
+                          <p
+                            className="text-muted m-0"
+                            style={{
+                              fontSize: 13,
+                            }}
+                          >
+                            {post._id}
+                          </p>
+                        </div>
+                      </div>
+                    </div>
+                    <Card.Body className="py-0">
+                      {profileData[0]._id === post.user._id && (
+                        <div className="text-end border-bottom">
+                          <Button
+                            variant="outline-light"
+                            className="btn-sm me-2 rounded-2 border border-end-0 border-bottom-0"
+                            onClick={() => {
+                              setEditingPostId(post._id);
+                              setEditingText(post.text);
+                            }}
+                          >
+                            <i className="bi bi-pencil text-dark"></i>
+                          </Button>
+                          <Button
+                            variant="outline-danger"
+                            className="btn-sm rounded-2 border border-start-0 border-bottom-0"
+                            onClick={() => handleDelete(post._id)}
+                          >
+                            <i className="bi bi-trash3"></i>
+                          </Button>
+                        </div>
+                      )}
+                      {editingPostId === post._id ? (
+                        <Form
+                          onSubmit={(e) => handleSubmitEdit(e, post._id)}
+                          className="w-100 mb-3"
+                        >
+                          <Form.Control
+                            className="rounded-pill flex-grow-1 text-start ps-3"
+                            variant="outline-secondary"
+                            type="text"
+                            value={editingText}
+                            onChange={(e) => setEditingText(e.target.value)}
+                          ></Form.Control>
+                        </Form>
+                      ) : (
+                        <p>{post.text}</p>
+                      )}
+                    </Card.Body>
+                    {post.image && (
                       <div>
-                        <h6 className="m-0">
-                          {post.user.name} {post.user.surname}{" "}
-                          <i className="bi bi-shield-check"></i>
+                        <Card.Img
+                          src={post.image}
+                          alt="image"
+                          className="rounded-0"
+                        />
+                      </div>
+                    )}
+
+                    {/* buttons */}
+                    <div className="d-flex justify-content-around border-top py-1">
+                      <Button
+                        variant="outline-light"
+                        className="d-flex border-0 align-items-center text-secondary"
+                      >
+                        <i className="bi bi-hand-thumbs-up fs-5"></i>
+                        <p
+                          className="mb-0 ms-1 fw-bold"
+                          style={{
+                            fontSize: 13,
+                          }}
+                        >
+                          Consiglia
+                        </p>
+                      </Button>
+                      <Button
+                        variant="outline-light"
+                        className="d-flex border-0 align-items-center text-secondary"
+                      >
+                        <i className="bi bi-chat-left-text fs-5"></i>
+                        <p
+                          className="mb-0 ms-1 fw-bold"
+                          style={{
+                            fontSize: 13,
+                          }}
+                        >
+                          Commenta
+                        </p>
+                      </Button>
+                      <Button
+                        variant="outline-light"
+                        className="d-flex border-0 align-items-center text-secondary"
+                      >
+                        <i className="bi bi-arrow-repeat fs-5"></i>
+                        <p
+                          className="mb-0 ms-1 fw-bold"
+                          style={{
+                            fontSize: 13,
+                          }}
+                        >
+                          Diffondi
+                        </p>
+                      </Button>
+                      <Button
+                        variant="outline-light"
+                        className="d-flex border-0 align-items-center text-secondary"
+                      >
+                        <i className="bi bi-send fs-5"></i>
+                        <p
+                          className="mb-0 ms-1 fw-bold"
+                          style={{
+                            fontSize: 13,
+                          }}
+                        >
+                          Invia
+                        </p>
+                      </Button>
+                    </div>
+
+                    {/* Comments */}
+                    {commentsPost.length > 0 && (
+                      <div className="border-top p-2 ps-5 bg-light">
+                        <h6 className="fw-semibold small text-secondary mb-2">
+                          Commenti:
                         </h6>
-                        <p
-                          className="text-muted m-0"
-                          style={{
-                            fontSize: 13,
-                          }}
-                        >
-                          {post.user.title}
-                        </p>
-
-                        <p
-                          className="text-muted m-0"
-                          style={{
-                            fontSize: 13,
-                          }}
-                        >
-                          {new Date(post.createdAt).toLocaleDateString(
-                            "it-IT",
-                            {
-                              day: "2-digit",
-                              month: "short",
-                              year: "numeric",
-                              hour: "2-digit",
-                              minute: "2-digit",
-                            }
-                          )}
-                        </p>
-                        <p
-                          className="text-muted m-0"
-                          style={{
-                            fontSize: 13,
-                          }}
-                        >
-                          {post._id}
-                        </p>
-                      </div>
-                    </div>
-                  </div>
-                  <Card.Body className="py-0">
-                    {profileData[0]._id === post.user._id && (
-                      <div className="text-end border-bottom">
-                        <Button
-                          variant="outline-light"
-                          className="btn-sm me-2 rounded-2 border border-end-0 border-bottom-0"
-                          onClick={() => {
-                            setEditingPostId(post._id);
-                            setEditingText(post.text);
-                          }}
-                        >
-                          <i className="bi bi-pencil text-dark"></i>
-                        </Button>
-                        <Button
-                          variant="outline-danger"
-                          className="btn-sm rounded-2 border border-start-0 border-bottom-0"
-                          onClick={() => handleDelete(post._id)}
-                        >
-                          <i className="bi bi-trash3"></i>
-                        </Button>
-                      </div>
-                    )}
-                    {editingPostId === post._id ? (
-                      <Form
-                        onSubmit={(e) => handleSubmitEdit(e, post._id)}
-                        className="w-100 mb-3"
-                      >
-                        <Form.Control
-                          className="rounded-pill flex-grow-1 text-start ps-3"
-                          variant="outline-secondary"
-                          type="text"
-                          value={editingText}
-                          onChange={(e) => setEditingText(e.target.value)}
-                        ></Form.Control>
-                      </Form>
-                    ) : (
-                      <p>{post.text}</p>
-                    )}
-                  </Card.Body>
-                  {post.image && (
-                    <div>
-                      <Card.Img
-                        src={post.image}
-                        alt="image"
-                        className="rounded-0"
-                      />
-                    </div>
-                  )}
-
-                  {/* buttons */}
-                  <div className="d-flex justify-content-around border-top py-1">
-                    <Button
-                      variant="outline-light"
-                      className="d-flex border-0 align-items-center text-secondary"
-                    >
-                      <i className="bi bi-hand-thumbs-up fs-5"></i>
-                      <p
-                        className="mb-0 ms-1 fw-bold"
-                        style={{
-                          fontSize: 13,
-                        }}
-                      >
-                        Consiglia
-                      </p>
-                    </Button>
-                    <Button
-                      variant="outline-light"
-                      className="d-flex border-0 align-items-center text-secondary"
-                    >
-                      <i className="bi bi-chat-left-text fs-5"></i>
-                      <p
-                        className="mb-0 ms-1 fw-bold"
-                        style={{
-                          fontSize: 13,
-                        }}
-                      >
-                        Commenta
-                      </p>
-                    </Button>
-                    <Button
-                      variant="outline-light"
-                      className="d-flex border-0 align-items-center text-secondary"
-                    >
-                      <i className="bi bi-arrow-repeat fs-5"></i>
-                      <p
-                        className="mb-0 ms-1 fw-bold"
-                        style={{
-                          fontSize: 13,
-                        }}
-                      >
-                        Diffondi
-                      </p>
-                    </Button>
-                    <Button
-                      variant="outline-light"
-                      className="d-flex border-0 align-items-center text-secondary"
-                    >
-                      <i className="bi bi-send fs-5"></i>
-                      <p
-                        className="mb-0 ms-1 fw-bold"
-                        style={{
-                          fontSize: 13,
-                        }}
-                      >
-                        Invia
-                      </p>
-                    </Button>
-                  </div>
-
-                  {/* Comments */}
-                  {commentsPost.length > 0 && (
-                    <div className="border-top p-2 ps-5 bg-light">
-                      <h6 className="fw-semibold small text-secondary mb-2">
-                        Commenti:
-                      </h6>
-                      {commentsPost.map((comment) => {
-                        const profileInfos = allProfiles.filter(
-                          (profile) => profile.email === comment.author
-                        );
-                        return (
-                          <div key={comment._id} className="d-flex mb-2">
-                            <div className="d-flex flex-row">
-                              <p className="mb-0 small me-2">
-                                {comment.author}:
-                              </p>
-                              <p className="mb-0 fw-bold">{comment.comment}</p>
-                              <p className="mb-0 fw-bold">
-                                {profileInfos.name}
-                              </p>
+                        {commentsPost.map((comment) => {
+                          const profileInfos = allProfiles.filter(
+                            (profile) => profile.email === comment.author
+                          );
+                          return (
+                            <div key={comment._id} className="d-flex mb-2">
+                              <div className="d-flex flex-row">
+                                <p className="mb-0 small me-2">
+                                  {comment.author}:
+                                </p>
+                                <p className="mb-0 fw-bold">
+                                  {comment.comment}
+                                </p>
+                                <p className="mb-0 fw-bold">
+                                  {profileInfos.name}
+                                </p>
+                              </div>
                             </div>
-                          </div>
-                        );
-                      })}
-                    </div>
-                  )}
-                </Card>
-              );
-            })}
+                          );
+                        })}
+                      </div>
+                    )}
+                  </Card>
+                );
+              })}
             <p className="mt-2 text-secondary small">
               Explore the latest trends in Frontend & Backend Web Development.
             </p>
