@@ -1,7 +1,9 @@
-import Asidex from "../components/Asidex";
+// import Asidex from "../components/Asidex";
 import ProfileMain from "../components/ProfileMain";
 import { Container, Row, Col } from "react-bootstrap";
 import TopAziende from "../components/TopAziende";
+
+import AsideProvaRedux from "../components/AsideProvaRedux";
 
 function Profile() {
   return (
@@ -12,7 +14,8 @@ function Profile() {
           <ProfileMain />
         </Col>
         <Col lg={4} md={5} sm={12}>
-          <Asidex />
+          <AsideProvaRedux />
+          {/* <Asidex /> */}
         </Col>
       </Row>
     </Container>

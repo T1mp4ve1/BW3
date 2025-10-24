@@ -17,7 +17,6 @@ const Asidex = () => {
   ];
   const companies = [
     { name: "Azienda A", descizione: "la descrizione" },
-    { name: "Azienda A", descizione: "la descrizione" },
     { name: "Azienda B", descizione: "la descrizione" },
     { name: "Azienda C", descizione: "la descrizione" },
     { name: "Azienda D", descizione: "la descrizione" },
@@ -56,7 +55,7 @@ const Asidex = () => {
       <Card className="mb-2 p-2">
         <div className="d-flex align-items-center mb-2">
           <Globe className="me-2" />
-          <h5 className="m-0">a sinistra sarà dobbiamo metterci un icona//Titolo annuncio</h5>
+          <h5 className="m-0">Ciao sono un Annuncio</h5>
         </div>
         <p>Dettagli dell'annuncio qui...</p>
         <Button className="text-dark rounded-pill bg-white border-dark">Segui</Button>
@@ -71,7 +70,7 @@ const Asidex = () => {
               <Person className="me-2" size={32} />
               <div>
                 <h5 className="m-0">
-                  {p.name} {p.descrizione} — {""}
+                  {p.name} {p.descrizione}
                 </h5>
               </div>
             </div>
@@ -87,7 +86,8 @@ const Asidex = () => {
         {personeConsigliate.slice(0, 2).map((p, idx) => (
           <div key={idx} className="mb-2 border-bottom">
             <div className="d-flex align-items-center">
-              <Link to={`/profile/${p._id}`}>
+              <Link to={`/profile/${p._id}`} className="text-black d-flex" style={{ textDecoration: "none" }}>
+                {/* <div className="d-flex"> */}
                 <Person className="me-2" size={32} />
                 <div>
                   <h5 className="m-0">
@@ -95,6 +95,7 @@ const Asidex = () => {
                   </h5>
                   <p className="m-0">{p.title}</p>
                 </div>
+                {/* </div> */}
               </Link>
             </div>
             <div className="d-flex justify-content-center mt-1 mb-2">
