@@ -11,8 +11,6 @@ import { Routes, Route } from "react-router-dom";
 export default function App() {
   return (
     <>
-      <NavBarLinkIn />
-
       <Routes>
         <Route path="/" element={<Home />} />
 
@@ -22,10 +20,6 @@ export default function App() {
         <Route path="/jobs" element={<Jobs />} />
         <Route path="/search/:query" element={<SearchPage />} />
       </Routes>
-
-      <div className="mt-5">
-        <FooterLinkIn />
-      </div>
     </>
   );
 }

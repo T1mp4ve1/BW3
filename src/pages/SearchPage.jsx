@@ -2,6 +2,8 @@ import { useState, useEffect } from "react";
 import { Badge, Card, Col, ListGroup, Row, Spinner } from "react-bootstrap";
 import { useParams } from "react-router";
 import "../components/css/SearchPage.css";
+import NavBarLinkIn from "../components/NavBarLinkIn";
+import FooterLinkIn from "../components/FooterLinkIn";
 
 export default function SearchPage() {
   const [searchData, setsearchData] = useState([]);
@@ -37,7 +39,8 @@ export default function SearchPage() {
 
   return (
     <>
-      <Row>
+      <NavBarLinkIn />
+      <Row className="mb-5">
         <Col xs={6}>
           <Card
             className="mt-5 p-4"
@@ -126,6 +129,7 @@ export default function SearchPage() {
           </Card>
         </Col>
       </Row>
+      <FooterLinkIn className="mt-5" />
     </>
   );
 }

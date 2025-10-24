@@ -1,6 +1,8 @@
 import { useState, useEffect } from "react";
 import { Card, Button, Image, Form } from "react-bootstrap";
 import styled from "styled-components";
+import NavBarLinkIn from "../components/NavBarLinkIn";
+import FooterLinkIn from "../components/FooterLinkIn";
 
 export default function Home() {
   const [profileData, setProfileData] = useState([]);
@@ -156,6 +158,8 @@ export default function Home() {
 
   return (
     <>
+      <NavBarLinkIn />
+
       {profileData.map((profile) => (
         <MainContainer key={profile._id}>
           {/* ===== LEFT SIDEBAR ===== */}
@@ -490,6 +494,7 @@ export default function Home() {
           </RightSidebar>
         </MainContainer>
       ))}
+      <FooterLinkIn className="mt-5 pt-5" />
     </>
   );
 }
