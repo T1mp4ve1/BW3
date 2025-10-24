@@ -1,24 +1,16 @@
 import { Container, Row, Col } from "react-bootstrap";
-import LeftSideJobs from "../components/LeftSideJobs";
-import JobLists from "../components/JobLists";
-import TopAziende from "../components/TopAziende";
+import LeftSideJobs from "../LeftSideJobs";
+import JobLists from "../JobList";
+import TopAziende from "../JobList";
 
-function Jobs() {
+function JobsPage() {
   return (
     <Container fluid className="d-flex justify-content-center mt-1">
-      <Row
-        className="w-100 justify-content-center"
-        style={{ maxWidth: "1200px" }}
-      >
-        {/* COLONNA SINISTRA */}
-
+      <Row className="justify-content-center">
         <Col lg={4} md={5} sm={12}>
           <LeftSideJobs />
         </Col>
-
-        {/* COLONNA DESTRA  */}
-
-        <Col lg={8} md={7} sm={12}>
+        <Col lg={8} md={7} sm={12} className="mt-4">
           <TopAziende />
           <JobLists />
         </Col>
@@ -27,4 +19,4 @@ function Jobs() {
   );
 }
 
-export default Jobs;
+export default JobsPage;

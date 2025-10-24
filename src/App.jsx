@@ -9,6 +9,7 @@ import ProfileMain from "./components/pages/ProfileMain";
 import Asidex from "./components/Asidex";
 import HomeLinkIn from "./components/pages/HomeLinkIn";
 import SearchPage from "./components/pages/SearchPage";
+import JobsPage from "./components/pages/JobPage";
 
 function App() {
   return (
@@ -18,6 +19,7 @@ function App() {
         <Container className="d-flex justify-content-center mt-5">
           <Routes>
             <Route path="/" element={<HomeLinkIn />} />
+            <Route path="/lavoro" element={<JobsPage />} />
             <Route
               path="/profile"
               element={

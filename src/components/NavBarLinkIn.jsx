@@ -92,7 +92,10 @@ const NavBarLinkIn = () => {
                 <i className="bi bi-people-fill fs-5"></i>
                 <p className="m-0 d-none d-lg-block">Rete</p>
               </Link>
-              <Link className="d-flex flex-column align-items-center mx-1">
+              <Link
+                to={"/lavoro"}
+                className="d-flex flex-column align-items-center mx-1"
+              >
                 <i className="bi bi-briefcase-fill fs-5"></i>
                 <p className="m-0 d-none d-lg-block">Lavoro</p>
               </Link>
