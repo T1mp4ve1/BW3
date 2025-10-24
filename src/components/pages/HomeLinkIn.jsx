@@ -4,12 +4,12 @@ import styled from "styled-components";
 
 export default function Home() {
   const [profileData, setProfileData] = useState([]);
-  const [experienceData, setExperienceData] = useState([]);
   const [postsData, setpostsData] = useState([]);
   const [newPost, setNewPost] = useState("");
   const [newImage, setNewImage] = useState(null);
   const [editingPostId, setEditingPostId] = useState(null);
   const [editingText, setEditingText] = useState("");
+  const [allProfiles, setAllProfiles] = useState([]);
 
   const API_KEY = import.meta.env.VITE_MY_SECRET_KEY;
 
@@ -23,6 +23,13 @@ export default function Home() {
       .then((data) => setProfileData([data]))
       .catch((err) => console.error("Errore profilo:", err));
 
+    fetch("https://striveschool-api.herokuapp.com/api/profile", {
+      headers: { Authorization: `Bearer ${API_KEY}` },
+    })
+      .then((res) => res.json())
+      .then(setAllProfiles)
+      .catch((err) => console.error("Errore profili:", err));
+
     // experiemce
     fetch(
       "https://striveschool-api.herokuapp.com/api/profile/68f5f3a76dfc200015d3988e/experiences",
@@ -31,7 +38,6 @@ export default function Home() {
       }
     )
       .then((res) => res.json())
-      .then(setExperienceData)
       .catch((err) => console.error("Errore esperienze:", err));
 
     //   posts
@@ -162,6 +168,7 @@ export default function Home() {
               </div>
               <hr />
               <SmallInfo>
+                {/* <p>{experienceData}</p> */}
                 <p>
                   <strong>Profile viewers:</strong> 9
                 </p>
