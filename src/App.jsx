@@ -1,10 +1,9 @@
-<<<<<<< HEAD
 import "./App.css";
 import FooterLinkIn from "./components/FooterLinkIn";
 import NavBarLinkIn from "./components/NavBarLinkIn";
 
 import Home from "./pages/Home";
-import Profile from "./pages/Profile"; // mantiene sia /profile che /profile/:userId
+import Profile from "./pages/Profile";
 import SearchPage from "./pages/SearchPage";
 import Jobs from "./pages/Jobs";
 import { Routes, Route } from "react-router-dom";
@@ -30,12 +29,3 @@ export default function App() {
     </>
   );
 }
-=======
-import React from "react";
-
-function App() {
-  return <div>ciao</div>;
-}
-
-export default App;
->>>>>>> main
