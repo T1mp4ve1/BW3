@@ -1,10 +1,10 @@
 import { useState, useEffect } from "react";
 import { Card, Image } from "react-bootstrap";
 import styled from "styled-components";
-// import PreferencesSVG from "../assets/preferencesSvg.svg";
-// import SavedSVG from "../assets/savedSVG.svg";
-// import Insights from "../assets/insights.svg";
-// import PostJob from "../assets/postJob.svg";
+import PreferencesSVG from "../assets/preferencesSvg.svg";
+import SavedSVG from "../assets/savedSVG.svg";
+import Insights from "../assets/insights.svg";
+import PostJob from "../assets/postJob.svg";
 
 export default function LeftSideJobs() {
   const [profileData, setProfileData] = useState([]);
@@ -56,9 +56,7 @@ export default function LeftSideJobs() {
                       >
                         {exp.role}
                       </p>
-                      <p className="text-secondary small">
-                        {profile.area}, Lazio
-                      </p>
+                      <p className="text-secondary small">{profile.area}</p>
 
                       <p
                         className="text-muted mb-0"
@@ -81,17 +79,17 @@ export default function LeftSideJobs() {
 
             <MiniCard>
               <div className="mb-3">
-                <img src={"PreferencesSVG"} alt="preferences" /> Preferences
+                <img src={PreferencesSVG} alt="preferences" /> Preferences
               </div>
               <div className="mb-3">
-                <img src={"SavedSVG"} alt="preferences" /> My jobs
+                <img src={SavedSVG} alt="preferences" /> My jobs
               </div>
               <div className="mb-3">
-                <img src={"Insights"} alt="preferences" /> My Career Insights
+                <img src={Insights} alt="preferences" /> My Career Insights
               </div>
               <hr />
               <div className="mb-3 text-primary">
-                <img src={"PostJob"} alt="preferences" /> Post a job with AI
+                <img src={PostJob} alt="preferences" /> Post a job with AI
               </div>
             </MiniCard>
           </LeftSidebar>
