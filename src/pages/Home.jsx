@@ -5,6 +5,7 @@ import styled from "styled-components";
 export default function Home() {
   const [profileData, setProfileData] = useState([]);
   const [experienceData, setExperienceData] = useState([]);
+  const [allProfiles, setAllProfiles] = useState([]);
   const [postsData, setpostsData] = useState([]);
   const [newPost, setNewPost] = useState("");
 
@@ -12,7 +13,7 @@ export default function Home() {
 
   // ===== FETCH =====
   useEffect(() => {
-    // profile
+    // profile personale
     fetch("https://striveschool-api.herokuapp.com/api/profile/me", {
       headers: { Authorization: `Bearer ${API_KEY}` },
     })
@@ -30,6 +31,14 @@ export default function Home() {
       .then((res) => res.json())
       .then(setExperienceData)
       .catch((err) => console.error("Errore esperienze:", err));
+
+    //tutti i profili
+    fetch("https://striveschool-api.herokuapp.com/api/profile", {
+      headers: { Authorization: `Bearer ${API_KEY}` },
+    })
+      .then((res) => res.json())
+      .then(setAllProfiles)
+      .catch((err) => console.error("Errore profili:", err));
 
     //   posts
     fetch("https://striveschool-api.herokuapp.com/api/posts/", {
@@ -103,51 +112,76 @@ export default function Home() {
             <ProfileCard>
               <Cover />
               <ProfileImage src={profile.image} alt="profile" />
-              <div className="text-center mt-5">
-                <h6 className="fw-semibold mb-0">
-                  {profile.name} {profile.surname}
-                </h6>
-                <p className="text-muted small mb-0">{profile.title}</p>
-                <p className="text-secondary small">{profile.area}</p>
-              </div>
-              <hr />
+              <div className="text-center mt-5"></div>
               <SmallInfo>
+                {experienceData.slice(0, 2).map((exp) => (
+                  <div key={exp._id} className="d-flex align-items-center mb-2">
+                    <div>
+                      <h6 className="fw-semibold mb-0">
+                        {profile.name} {profile.surname}
+                      </h6>
+                      <p
+                        className="fw-semibold mb-0"
+                        style={{ fontSize: "0.9rem" }}
+                      >
+                        {exp.role}
+                      </p>
+                      <p className="text-secondary small">
+                        {profile.area}, Lazio
+                      </p>
+
+                      <p
+                        className="text-muted mb-0"
+                        style={{ fontSize: "0.8rem" }}
+                      >
+                        <Image
+                          src={exp.image}
+                          width={32}
+                          height={32}
+                          roundedCircle
+                          className="me-2"
+                        />
+                        {exp.company}
+                      </p>
+                    </div>
+                  </div>
+                ))}
+              </SmallInfo>
+            </ProfileCard>
+
+            <MiniCard>
+              <div>
                 <p>
                   <strong>Profile viewers:</strong> 9
                 </p>
                 <p>
                   <strong>Connections:</strong> 500+
                 </p>
-              </SmallInfo>
-            </ProfileCard>
+              </div>
+            </MiniCard>
 
             <MiniCard>
-              <h6 className="fw-semibold mb-1">Recent Experiences</h6>
-              {experienceData.slice(0, 2).map((exp) => (
-                <div key={exp._id} className="d-flex align-items-center mb-2">
-                  <Image
-                    src={exp.image}
-                    width={32}
-                    height={32}
-                    roundedCircle
-                    className="me-2"
-                  />
-                  <div>
-                    <p
-                      className="fw-semibold mb-0"
-                      style={{ fontSize: "0.9rem" }}
-                    >
-                      {exp.role}
-                    </p>
-                    <p
-                      className="text-muted mb-0"
-                      style={{ fontSize: "0.8rem" }}
-                    >
-                      {exp.company}
-                    </p>
-                  </div>
+              <div className="d-flex flex-column gap-3">
+                <div className="d-flex align-items-center">
+                  <i className="bi bi-bookmark-fill me-2 fs-5"></i>
+                  <span className="small fw-semibold">Saved items</span>
                 </div>
-              ))}
+
+                <div className="d-flex align-items-center">
+                  <i className="bi bi-people-fill me-2 fs-5"></i>
+                  <span className="small fw-semibold">Groups</span>
+                </div>
+
+                <div className="d-flex align-items-center">
+                  <i className="bi bi-newspaper me-2 fs-5"></i>
+                  <span className="small fw-semibold">Newsletters</span>
+                </div>
+
+                <div className="d-flex align-items-center">
+                  <i className="bi bi-calendar-event-fill me-2 fs-5"></i>
+                  <span className="small fw-semibold">Events</span>
+                </div>
+              </div>
             </MiniCard>
           </LeftSidebar>
 
@@ -329,6 +363,55 @@ export default function Home() {
               <p className="small mb-0">🟧 Zip Path</p>
               <p className="small mb-0">🔷 Tango Grid</p>
             </MiniCard>
+
+            <MiniCard className="p-3 bg-white border rounded shadow-sm">
+              <h6 className="fw-semibold mb-3">Add to your feed</h6>
+
+              {allProfiles.slice(-4).map((profile) => (
+                <div
+                  key={profile._id}
+                  className="d-flex flex-column align-items-start mb-3"
+                >
+                  {/* ==== Sezione immagine + testo ==== */}
+                  <div className="d-flex align-items-center w-100 mb-1">
+                    <img
+                      src={profile.image}
+                      alt={`${profile.name} ${profile.surname}`}
+                      className="rounded-circle me-2"
+                      style={{
+                        width: "40px",
+                        height: "40px",
+                        objectFit: "cover",
+                      }}
+                    />
+                    <div>
+                      <p className="mb-0 fw-semibold text-capitalize small">
+                        {profile.name} {profile.surname}
+                      </p>
+                      <p className="mb-0 text-secondary small">
+                        {profile.title || "profession not specified"}
+                      </p>
+                    </div>
+                  </div>
+
+                  {/* ==== Bottone follow ==== */}
+                  <Button
+                    variant="outline-secondary"
+                    size="sm"
+                    className="rounded-pill fw-semibold px-3 ms-5"
+                  >
+                    + Follow
+                  </Button>
+                </div>
+              ))}
+
+              <a
+                href="#"
+                className="d-block text-center text-decoration-none mt-2 small fw-semibold"
+              >
+                View all recommendations →
+              </a>
+            </MiniCard>
           </RightSidebar>
         </MainContainer>
       ))}
@@ -390,8 +473,8 @@ const ProfileImage = styled.img`
   border-radius: 50%;
   border: 3px solid white;
   position: absolute;
-  top: 30px;
-  left: 50%;
+  top: 20px;
+  left: 20%;
   transform: translateX(-50%);
   background: white;
 `;

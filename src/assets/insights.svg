@@ -1,0 +1,23 @@
+<svg
+  xmlns="http://www.w3.org/2000/svg"
+  id="premium-chip-medium"
+  aria-hidden="true"
+  data-supported-dps="24x24"
+  viewBox="0 0 24 24"
+  data-token-id="286"
+  width="24"
+  height="24"
+  class="_9f045a47 afcaf490 ee444213 fdad8d53"
+  role="img"
+  aria-label=""
+  style="width: 24px; min-width: 24px; height: 24px; min-height: 24px"
+>
+  <path
+    fill="#f8c77e"
+    d="M20 20a3.36 3.36 0 0 0 1-2.39V6.38A3.38 3.38 0 0 0 17.62 3H6.38A3.36 3.36 0 0 0 4 4z"
+  ></path>
+  <path
+    fill="#e7a33e"
+    d="M4 4a3.36 3.36 0 0 0-1 2.38v11.24A3.38 3.38 0 0 0 6.38 21h11.24A3.36 3.36 0 0 0 20 20z"
+  ></path>
+</svg>

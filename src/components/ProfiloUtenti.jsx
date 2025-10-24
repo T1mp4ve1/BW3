@@ -7,6 +7,7 @@ export default function ProfiloUtenti() {
   const [profileData, setProfileData] = useState([]);
   const [experienceData, setExperienceData] = useState([]);
   const id = useParams();
+
   useEffect(() => {
     const API_KEY = import.meta.env.VITE_MY_SECRET_KEY;
     const url = `https://striveschool-api.herokuapp.com/api/profile/${id.userId}`;

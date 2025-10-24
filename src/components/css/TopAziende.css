@@ -1,0 +1,49 @@
+/* ===== Stile generale del contenitore ===== */
+.container {
+  margin-top: 1rem;
+}
+
+/* ===== Titolo sezione ===== */
+.container h3 {
+  font-weight: 700;
+  font-size: 1.25rem;
+  margin-bottom: 1rem;
+}
+
+/* ===== Card singola ===== */
+.container .card {
+  border: 1px solid #ddd;
+  border-radius: 10px;
+  background-color: #fff;
+  box-shadow: none;
+  padding: 1rem 1.2rem;
+  margin-bottom: 0.6rem;
+  transition: background-color 0.2s ease;
+}
+
+.container .card:hover {
+  background-color: #f3f2ef;
+}
+
+/* ===== Titolo azienda ===== */
+.container .card h3 {
+  font-size: 15px;
+  font-weight: 600;
+  color: #000;
+  margin-bottom: 0.3rem;
+}
+
+/* ===== Titolo lavoro ===== */
+.container .card h4 {
+  font-size: 14px;
+  font-weight: 500;
+  color: #6c757d;
+  margin-bottom: 0.3rem;
+}
+
+/* ===== Descrizione ===== */
+.container .card div {
+  color: #868686;
+  font-size: 13px;
+  line-height: 1.3;
+}

@@ -5,6 +5,9 @@ import ProfiloUtenti from "./components/ProfiloUtenti";
 
 import Home from "./pages/Home";
 import Profile from "./pages/Profile";
+import SearchPage from "./pages/SearchPage";
+
+import Jobs from "./pages/Jobs";
 import { Routes, Route } from "react-router-dom";
 
 export default function App() {
@@ -16,6 +19,8 @@ export default function App() {
 
         <Route path="/profile" element={<Profile />} />
         <Route path="/profile/:userId" element={<ProfiloUtenti />} />
+        <Route path="/jobs" element={<Jobs />} />
+        <Route path="/search/:query" element={<SearchPage />} />
       </Routes>
       <div className="mt-5">
         <FooterLinkIn />

@@ -9,14 +9,23 @@ import {
   Col,
   Card,
 } from "react-bootstrap";
-import { Link } from "react-router-dom"; // ✅ corretto
+import { Link, useNavigate } from "react-router-dom";
 import "bootstrap-icons/font/bootstrap-icons.css";
 import "./css/NavBarLinkIn.css";
 import imagePlaceHolder from "../assets/logo.png";
 import { useEffect, useState } from "react";
 
-const NavBarLinkIn = () => {
+export default function NavBarLinkIn() {
   const [profileData, setProfileData] = useState([]);
+  const [searchTerm, setSearchTerm] = useState("");
+  const navigate = useNavigate();
+
+  const handleSearch = (e) => {
+    e.preventDefault();
+    if (searchTerm.trim() !== "") {
+      navigate(`/search/${encodeURIComponent(searchTerm)}`);
+    }
+  };
 
   useEffect(() => {
     const API_KEY = import.meta.env.VITE_MY_SECRET_KEY;
@@ -48,13 +57,18 @@ const NavBarLinkIn = () => {
                 <i className="bi bi-search fs-5"></i>
                 <p className="m-0 d-none d-lg-block">Cerca</p>
               </Link>
-              <Form className="position-relative me-5 d-none d-lg-block">
+              <Form
+                className="position-relative me-5 d-none d-lg-block"
+                onSubmit={handleSearch}
+              >
                 <i className="bi bi-search position-absolute top-50 start-0 translate-middle ms-4"></i>
                 <Form.Control
                   type="search"
                   placeholder="Cerca"
                   className="me-2 ps-5 py-1 pe-5 rounded-5 border-secondary"
                   aria-label="Search"
+                  value={searchTerm}
+                  onChange={(e) => setSearchTerm(e.target.value)}
                 />
               </Form>
             </div>
@@ -78,7 +92,10 @@ const NavBarLinkIn = () => {
                 <i className="bi bi-people-fill fs-5"></i>
                 <p className="m-0 d-none d-lg-block">Rete</p>
               </Link>
-              <Link className="d-flex flex-column align-items-center mx-1">
+              <Link
+                to={"/jobs"}
+                className="d-flex flex-column align-items-center mx-1"
+              >
                 <i className="bi bi-briefcase-fill fs-5"></i>
                 <p className="m-0 d-none d-lg-block">Lavoro</p>
               </Link>
@@ -96,7 +113,7 @@ const NavBarLinkIn = () => {
                 <div>
                   <img
                     className="rounded-5"
-                    src={imagePlaceHolder}
+                    src={profileData.image || imagePlaceHolder}
                     alt="profileImage"
                     style={{ width: "28px", height: "28px" }}
                   />
@@ -110,7 +127,7 @@ const NavBarLinkIn = () => {
                     <div className="d-flex">
                       <img
                         className="rounded-5 me-2"
-                        src={profileData.image}
+                        src={profileData.image || imagePlaceHolder}
                         alt="profileImage"
                         style={{ width: "55px", height: "55px" }}
                       />
@@ -142,50 +159,26 @@ const NavBarLinkIn = () => {
 
                     <div className="my-2 d-flex flex-column border-bottom pb-2">
                       <h6>Account</h6>
-                      <a
-                        href="/"
-                        onClick={(e) => e.preventDefault()}
-                        className="mb-2"
-                      >
+                      <a href="/" onClick={(e) => e.preventDefault()}>
                         Impostazioni e privacy
                       </a>
-                      <a
-                        href="/"
-                        onClick={(e) => e.preventDefault()}
-                        className="mb-2"
-                      >
+                      <a href="/" onClick={(e) => e.preventDefault()}>
                         Guida
                       </a>
-                      <a
-                        href="/"
-                        onClick={(e) => e.preventDefault()}
-                        className="mb-2"
-                      >
+                      <a href="/" onClick={(e) => e.preventDefault()}>
                         Lingua
                       </a>
                     </div>
 
                     <div className="my-2 d-flex flex-column border-bottom pb-2">
                       <h6>Gestisci</h6>
-                      <a
-                        href="/"
-                        onClick={(e) => e.preventDefault()}
-                        className="mb-2"
-                      >
+                      <a href="/" onClick={(e) => e.preventDefault()}>
                         Post e attività
                       </a>
-                      <a
-                        href="/"
-                        onClick={(e) => e.preventDefault()}
-                        className="mb-2"
-                      >
+                      <a href="/" onClick={(e) => e.preventDefault()}>
                         Account per la pubblicazione
                       </a>
-                      <a
-                        href="/"
-                        onClick={(e) => e.preventDefault()}
-                        className="mb-2"
-                      >
+                      <a href="/" onClick={(e) => e.preventDefault()}>
                         Lingua
                       </a>
                     </div>
@@ -227,65 +220,35 @@ const NavBarLinkIn = () => {
                       className="d-flex flex-column ms-2"
                       id="aziendeCardLeft"
                     >
-                      <a
-                        href="/"
-                        onClick={(e) => e.preventDefault()}
-                        className="d-flex align-items-center mb-3"
-                      >
+                      <a href="/" onClick={(e) => e.preventDefault()}>
                         <i className="bi bi-compass-fill text-primary fs-4 me-2"></i>
                         <p>Vendi</p>
                       </a>
-                      <a
-                        href="/"
-                        onClick={(e) => e.preventDefault()}
-                        className="d-flex align-items-center mb-3"
-                      >
+                      <a href="/" onClick={(e) => e.preventDefault()}>
                         <i className="bi bi-microsoft-teams text-primary fs-4 me-2"></i>
                         <p>Gruppi</p>
                       </a>
                       <p className="text-secondary talent mt-2">Talent</p>
-                      <a
-                        href="/"
-                        onClick={(e) => e.preventDefault()}
-                        className="d-flex align-items-center mb-3"
-                      >
+                      <a href="/" onClick={(e) => e.preventDefault()}>
                         <i className="bi bi-person-fill-check text-primary fs-4 me-2"></i>
                         <p>Talent Insights</p>
                       </a>
-                      <a
-                        href="/"
-                        onClick={(e) => e.preventDefault()}
-                        className="d-flex align-items-center mb-3"
-                      >
+                      <a href="/" onClick={(e) => e.preventDefault()}>
                         <i className="bi bi-bag-plus-fill text-primary fs-4 me-2"></i>
                         <p>Pubblica un’offerta di lavoro</p>
                       </a>
                       <p className="text-secondary talent mt-2">Vendite</p>
-                      <a
-                        href="/"
-                        onClick={(e) => e.preventDefault()}
-                        className="d-flex align-items-center mb-3"
-                      >
+                      <a href="/" onClick={(e) => e.preventDefault()}>
                         <i className="bi bi-patch-check-fill text-primary fs-4 me-2"></i>
                         <p>Marketplace dei servizi</p>
                       </a>
-
                       <p className="text-secondary talent mt-2">Marketing</p>
-                      <a
-                        href="/"
-                        onClick={(e) => e.preventDefault()}
-                        className="d-flex align-items-center mb-3"
-                      >
+                      <a href="/" onClick={(e) => e.preventDefault()}>
                         <i className="bi bi-bullseye text-primary fs-4 me-2"></i>
                         <p>Pubblicizza</p>
                       </a>
-
                       <p className="text-secondary talent mt-2">Learning</p>
-                      <a
-                        href="/"
-                        onClick={(e) => e.preventDefault()}
-                        className="d-flex align-items-center mb-3"
-                      >
+                      <a href="/" onClick={(e) => e.preventDefault()}>
                         <i className="bi bi-play-btn-fill text-primary fs-4 me-2"></i>
                         <p>Learning</p>
                       </a>
@@ -298,47 +261,40 @@ const NavBarLinkIn = () => {
                       <p className="p1">Assumi su LinkedIn</p>
                       <p className="mb-3">Trova, attrai e assumi</p>
                     </a>
-
                     <a href="/" onClick={(e) => e.preventDefault()}>
                       <p className="p1">Vendi con LinkedIn</p>
                       <p className="mb-3">
                         Sblocca nuove opportunità di vendita
                       </p>
                     </a>
-
                     <a href="/" onClick={(e) => e.preventDefault()}>
                       <p className="p1">Offerta di lavoro gratuita</p>
                       <p className="mb-3">
                         Ottieni rapidamente candidati qualificati
                       </p>
                     </a>
-
                     <a href="/" onClick={(e) => e.preventDefault()}>
                       <p className="p1">Fai pubblicità su LinkedIn</p>
                       <p className="mb-3">
                         Acquisisci clienti e fai crescere la tua azienda
                       </p>
                     </a>
-
                     <a href="/" onClick={(e) => e.preventDefault()}>
                       <p className="p1">Inizia con Premium</p>
                       <p className="mb-3">Amplia e sfrutta la tua rete</p>
                     </a>
-
                     <a href="/" onClick={(e) => e.preventDefault()}>
                       <p className="p1">Impara con LinkedIn</p>
                       <p className="mb-3">
                         Corsi per formare i tuoi dipendenti
                       </p>
                     </a>
-
                     <a href="/" onClick={(e) => e.preventDefault()}>
                       <p className="p1">Centro per amministratori</p>
                       <p className="mb-3">
                         Gestisci i dettagli di fatturazione e account
                       </p>
                     </a>
-
                     <a
                       href="/"
                       onClick={(e) => e.preventDefault()}
@@ -356,6 +312,4 @@ const NavBarLinkIn = () => {
       </Container>
     </Navbar>
   );
-};
-
-export default NavBarLinkIn;
+}
