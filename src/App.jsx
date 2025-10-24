@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 import "./App.css";
 import FooterLinkIn from "./components/FooterLinkIn";
 import NavBarLinkIn from "./components/NavBarLinkIn";
@@ -30,12 +29,3 @@ export default function App() {
     </>
   );
 }
-=======
-import React from "react";
-
-function App() {
-  return <div>ciao</div>;
-}
-
-export default App;
->>>>>>> main
