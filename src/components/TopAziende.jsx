@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { Card, Container } from "react-bootstrap";
-
+import "./css/TopAziende.css";
 const TopAziende = () => {
   const [datiAziende, setDatiAziende] = useState([]);
 
